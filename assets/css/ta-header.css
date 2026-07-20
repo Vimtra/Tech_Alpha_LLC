@@ -1,0 +1,664 @@
+/* ==========================================================================
+   TECH ALPHA — HEADER / NAVIGATION v2
+   Corporate command-bar: frosted glass on scroll, amber top accent strip,
+   icon-rich mega dropdown, phone + CTA actions, three-bar burger.
+   Depends on: ta-system.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   SCOPED BASE
+   -------------------------------------------------------------------------- */
+.ta-header,
+.ta-header *,
+.ta-header *::before,
+.ta-header *::after {
+  box-sizing: border-box;
+}
+
+.ta-header {
+  font-family: var(--ta-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   TOP AMBER ACCENT STRIP
+   A single 2px band at the very top — the amber brand mark on entry.
+   -------------------------------------------------------------------------- */
+.ta-header__strip {
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--ta-accent) 20%,
+    #ffb254 50%,
+    var(--ta-accent) 80%,
+    transparent 100%
+  );
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER ROOT
+   -------------------------------------------------------------------------- */
+.ta-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* Make the header visually float above the canvas by removing
+     the opaque layer that caused the background discontinuity.
+     Keep backdrop blur, border and shadow to preserve glass effect. */
+  background: transparent;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  transition:
+    border-color var(--ta-dur-2) var(--ta-ease),
+    background-color var(--ta-dur-2) var(--ta-ease),
+    box-shadow var(--ta-dur-2) var(--ta-ease);
+}
+
+/* Scrolled state — set by ta-nav.js adding `.is-scrolled` */
+.ta-header.is-scrolled {
+  /* On scroll keep a subtle glass tint (still semi-transparent) so the
+     header reads against page content but continues to feel like glass. */
+  background: rgba(13, 17, 26, 0.18);
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 8px 40px rgba(2, 6, 12, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   INNER LAYOUT
+   Logo | [burger] | Nav | Actions
+   -------------------------------------------------------------------------- */
+.ta-header__inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  height: 80px;
+}
+
+/* --------------------------------------------------------------------------
+   LOGO
+   -------------------------------------------------------------------------- */
+.ta-header__brand {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  border-radius: 4px;
+  transition: opacity var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-header__brand:hover {
+  opacity: 0.85;
+}
+
+.ta-header__brand img {
+  display: block;
+  width: 120px;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   PRIMARY NAV
+   -------------------------------------------------------------------------- */
+.ta-nav {
+  flex: 1 1 auto;
+}
+
+.ta-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ta-nav__item {
+  position: relative;
+}
+
+/* Nav link / toggle button — shared */
+.ta-nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  font-family: var(--ta-font);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: rgba(174, 184, 204, 0.85);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--ta-dur-1) var(--ta-ease),
+    background-color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-nav__link:hover,
+.ta-nav__link:focus-visible {
+  color: var(--ta-ink);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Active page indicator — bottom amber pip */
+.ta-nav__link[aria-current="page"] {
+  color: var(--ta-ink);
+}
+
+.ta-nav__link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--ta-accent);
+  border-radius: 2px;
+}
+
+/* Caret chevron */
+.ta-nav__caret {
+  flex: none;
+  color: var(--ta-ink-mute);
+  transition: transform var(--ta-dur-2) var(--ta-ease);
+}
+
+.ta-nav__toggle[aria-expanded="true"] .ta-nav__caret {
+  transform: rotate(180deg);
+  color: var(--ta-accent-ink);
+}
+
+/* --------------------------------------------------------------------------
+   DROPDOWN PANEL — wide, glassmorphism card
+   -------------------------------------------------------------------------- */
+.ta-nav__dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  z-index: 200;
+  width: 560px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--ta-dur-2) var(--ta-ease),
+    transform var(--ta-dur-2) var(--ta-ease),
+    visibility 0s linear var(--ta-dur-2);
+}
+
+.ta-nav__toggle[aria-expanded="true"] + .ta-nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition:
+    opacity var(--ta-dur-2) var(--ta-ease),
+    transform var(--ta-dur-2) var(--ta-ease),
+    visibility 0s linear 0s;
+}
+
+.ta-nav__dropdown-inner {
+  padding: 8px;
+  background: rgba(22, 28, 43, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 1px rgba(248, 151, 35, 0.06),
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    0 4px 16px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Amber top edge on the dropdown */
+.ta-nav__dropdown-inner::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 30%;
+  right: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ta-accent), transparent);
+  border-radius: 1px;
+}
+
+/* "Our Capabilities" label */
+.ta-nav__dropdown-label {
+  padding: 10px 12px 6px;
+  margin: 0;
+  font-family: var(--ta-font-mono);
+  font-size: 9.5px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ta-accent-ink);
+}
+
+/* Dropdown menu list */
+.ta-nav__menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Dropdown menu item link */
+.ta-nav__menu-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition:
+    background-color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-nav__menu-link:hover,
+.ta-nav__menu-link:focus-visible {
+  background: rgba(248, 151, 35, 0.07);
+}
+
+.ta-nav__menu-link:focus-visible {
+  outline: 2px solid var(--ta-accent-ink);
+  outline-offset: -2px;
+}
+
+/* Icon badge */
+.ta-nav__menu-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(248, 151, 35, 0.09);
+  border: 1px solid rgba(248, 151, 35, 0.16);
+  color: var(--ta-accent-ink);
+  transition:
+    background-color var(--ta-dur-1) var(--ta-ease),
+    border-color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-nav__menu-link:hover .ta-nav__menu-icon {
+  background: rgba(248, 151, 35, 0.18);
+  border-color: rgba(248, 151, 35, 0.35);
+}
+
+/* Text stack */
+.ta-nav__menu-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ta-nav__menu-title {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ta-ink);
+  line-height: 1.2;
+}
+
+.ta-nav__menu-desc {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ta-ink-mute);
+}
+
+/* Dropdown footer — "View all services" link */
+.ta-nav__dropdown-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 12px 6px;
+  margin-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ta-nav__dropdown-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ta-accent-ink);
+  text-decoration: none;
+  transition:
+    color var(--ta-dur-1) var(--ta-ease),
+    gap var(--ta-dur-2) var(--ta-ease);
+}
+
+.ta-nav__dropdown-all:hover,
+.ta-nav__dropdown-all:focus-visible {
+  color: var(--ta-accent-hi);
+  gap: 10px;
+}
+
+.ta-nav__dropdown-all:focus-visible {
+  outline: 2px solid var(--ta-accent-ink);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER ACTIONS (desktop right side)
+   -------------------------------------------------------------------------- */
+.ta-header__actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Phone number */
+.ta-header__tel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ta-ink-mute);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-header__tel:hover,
+.ta-header__tel:focus-visible {
+  color: var(--ta-ink);
+}
+
+.ta-header__tel-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(248, 151, 35, 0.1);
+  border: 1px solid rgba(248, 151, 35, 0.18);
+  color: var(--ta-accent-ink);
+  flex-shrink: 0;
+  transition:
+    background-color var(--ta-dur-1) var(--ta-ease),
+    border-color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-header__tel:hover .ta-header__tel-icon {
+  background: rgba(248, 151, 35, 0.18);
+  border-color: rgba(248, 151, 35, 0.35);
+}
+
+/* Vertical divider between phone and CTA */
+.ta-header__divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+/* Primary CTA button override */
+.ta-header__cta {
+  padding: 11px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   BURGER — 3-bar version
+   -------------------------------------------------------------------------- */
+.ta-burger {
+  display: none;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -8px;
+  padding: 0;
+  color: var(--ta-ink);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    background-color var(--ta-dur-1) var(--ta-ease),
+    border-color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-burger:hover {
+  background: rgba(248, 151, 35, 0.1);
+  border-color: rgba(248, 151, 35, 0.25);
+  color: var(--ta-accent-ink);
+}
+
+.ta-burger:focus-visible {
+  outline: 2px solid var(--ta-accent-ink);
+  outline-offset: 3px;
+}
+
+.ta-burger__box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18px;
+  height: 13px;
+}
+
+.ta-burger__bar {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transform-origin: center;
+  transition:
+    transform var(--ta-dur-2) var(--ta-ease),
+    opacity var(--ta-dur-1) var(--ta-ease),
+    width var(--ta-dur-2) var(--ta-ease);
+}
+
+/* Third bar slightly shorter for visual interest */
+.ta-burger__bar:nth-child(3) {
+  width: 70%;
+}
+
+/* X state — top and bottom bars cross, middle fades */
+.ta-burger[aria-expanded="true"] .ta-burger__bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.ta-burger[aria-expanded="true"] .ta-burger__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.ta-burger[aria-expanded="true"] .ta-burger__bar:nth-child(3) {
+  width: 100%;
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   MOBILE / TABLET  (≤ 1023px)
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .ta-header__inner {
+    height: 68px;
+    justify-content: space-between;
+    gap: var(--ta-s4);
+  }
+
+  .ta-burger { display: inline-flex; }
+  .ta-header__actions { display: none; }
+
+  /* Full-height slide-down panel */
+  .ta-nav {
+    position: fixed;
+    inset: 68px 0 0 0;
+    z-index: 90;
+    flex: none;
+    padding: var(--ta-s5) 0 var(--ta-s8);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: rgba(13, 17, 26, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition:
+      opacity var(--ta-dur-2) var(--ta-ease),
+      transform var(--ta-dur-2) var(--ta-ease),
+      visibility 0s linear var(--ta-dur-2);
+  }
+
+  .ta-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition:
+      opacity var(--ta-dur-2) var(--ta-ease),
+      transform var(--ta-dur-2) var(--ta-ease),
+      visibility 0s linear 0s;
+  }
+
+  .ta-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-width: var(--ta-max);
+    margin-inline: auto;
+    padding-inline: var(--ta-gutter);
+  }
+
+  .ta-nav__item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .ta-nav__link {
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--ta-s5) 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ta-ink);
+    border-radius: 0;
+  }
+
+  .ta-nav__link:hover,
+  .ta-nav__link:focus-visible {
+    background: none;
+    color: var(--ta-accent-ink);
+  }
+
+  .ta-nav__link[aria-current="page"] {
+    color: var(--ta-accent-ink);
+  }
+
+  .ta-nav__link[aria-current="page"]::after { content: none; }
+
+  /* Mobile accordion dropdown — replaces the floating panel */
+  .ta-nav__dropdown {
+    position: static;
+    width: 100%;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
+    display: none;
+    transition: none;
+  }
+
+  .ta-nav__toggle[aria-expanded="true"] + .ta-nav__dropdown {
+    display: block;
+    pointer-events: auto;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ta-nav__dropdown-inner {
+    margin-bottom: var(--ta-s4);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .ta-nav__dropdown-inner::before { display: none; }
+
+  .ta-nav__menu {
+    grid-template-columns: 1fr;
+  }
+
+  .ta-nav__menu-link {
+    padding: 10px 8px;
+  }
+
+  .ta-nav__menu-title { font-size: 14px; }
+  .ta-nav__menu-desc  { font-size: 11px; }
+
+  /* Footer: phone + CTA stacked */
+  .ta-nav__footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ta-s4);
+    max-width: var(--ta-max);
+    margin-inline: auto;
+    padding: var(--ta-s7) var(--ta-gutter) 0;
+  }
+
+  .ta-nav__footer .ta-header__tel {
+    font-size: 16px;
+    color: var(--ta-ink-body);
+  }
+
+  .ta-nav__footer .ta-btn {
+    width: 100%;
+    padding-block: 18px;
+    font-size: 15px;
+    border-radius: 10px;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ta-nav__footer { display: none; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ta-header,
+  .ta-nav,
+  .ta-nav__dropdown,
+  .ta-burger__bar,
+  .ta-nav__link,
+  .ta-nav__menu-link,
+  .ta-nav__caret {
+    transition: none !important;
+  }
+}

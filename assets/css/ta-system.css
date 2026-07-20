@@ -1,0 +1,310 @@
+/* ==========================================================================
+   TECH ALPHA — DESIGN SYSTEM v1
+   Tokens, base primitives and shared components for the `ta-` namespace.
+
+   SCOPE NOTE
+   Every selector here is namespaced `ta-*` and must not collide with the
+   legacy template (style.css / bootstrap.min.css), which stays loaded until
+   the last legacy section is rebuilt.
+
+   TYPE-UNIT NOTE
+   Type tokens are px-based on purpose. Legacy style.css pins
+   `html { font-size: 15px }`, which poisons rem for the whole document.
+   Overriding root would resize every legacy section by ~6.7%. When
+   style.css is retired: restore `html { font-size: 100% }` and convert the
+   --ta-fs-* tokens below to rem. This file is the single point of change.
+   ========================================================================== */
+
+:root {
+  /* ---- Surfaces · DARK theme -----------------------------------------
+     Tokens are named by ROLE, never by hue or lightness, so flipping the
+     theme is a change to this block alone — no component file is touched.
+     -------------------------------------------------------------------- */
+  --ta-surface:           #0d111a;            /* the canvas */
+  --ta-surface-hover:     rgba(255, 255, 255, 0.05);
+  --ta-panel:             #161c2b;            /* raised object, when needed */
+
+  /* ---- Ink ------------------------------------------------------------ */
+  --ta-ink:               #ffffff;            /* 18.88:1 on canvas */
+  --ta-ink-body:          #aeb8cc;            /*  9.47:1 on canvas */
+  --ta-ink-mute:          #8d99b0;            /*  6.58:1 on canvas */
+
+  /* ---- Rules ---------------------------------------------------------- */
+  --ta-rule:              rgba(255, 255, 255, 0.14);
+  /* The exposed sheet grid. A whisper — structure you sense before you see. */
+  --ta-rule-faint:        rgba(255, 255, 255, 0.05);
+
+  /* ---- Colour · the amber accent --------------------------------------
+     Sampled directly from the logo (logo-3.png is #f89723 + #fcfcfc on
+     transparent). The legacy template's "secondary orange" #f8981e is the
+     same colour — the brand, surviving inside a bought theme whose default
+     accent was green. Amber is the brand; green was never ours.
+
+     Measured, not guessed:
+       amber on canvas = 7.83:1  → legal as ink here
+       ink on amber    = 7.83:1  → legal as a filled surface
+     --ta-accent-ink means "the amber that is legal as INK on the current
+     surface". On this dark theme that is the brand amber itself. On a light
+     theme it must drop to #a85c06 (4.79:1), because brand amber on paper is
+     2.13:1 and fails even the 3:1 non-text bar.
+     -------------------------------------------------------------------- */
+  --ta-accent:            #f89723;            /* brand */
+  --ta-accent-hi:         #ffb254;            /* hover on a filled surface */
+  --ta-accent-ink:        #f89723;            /* legal as ink on dark */
+
+  /* ---- Typography --------------------------------------------------- */
+  --ta-font: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Technical voice for sheet metadata. Deliberately a SYSTEM stack: it is
+     the authentic register for spec annotation and costs zero bytes. It
+     renders differently per OS — acceptable at 11px tracked uppercase, and
+     the saved request is better spent elsewhere. Never use it for prose. */
+  --ta-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+                  "Liberation Mono", monospace;
+
+  --ta-fs-meta-mono:      11px;
+  /* Spec-table reference numerals — oversized, tabular, amber. */
+  --ta-fs-numeral:        clamp(20px, 1.9vw, 28px);
+  --ta-fs-eyebrow:        12px;
+  --ta-fs-meta:           13px;
+  --ta-fs-sm:             14px;
+  --ta-fs-base:           16px;
+  --ta-fs-lg:             clamp(17px, 1.15vw, 19px);
+  --ta-fs-h3:             clamp(19px, 1.5vw, 23px);
+  --ta-fs-h2:             clamp(28px, 2.9vw, 40px);
+  /* Corporate register: composed, not poster-scale. The editorial 82px read
+     as a magazine cover; 66px holds authority without shouting. */
+  --ta-fs-display:        clamp(38px, 4.8vw, 66px);
+
+  --ta-lh-display:        1.07;
+  --ta-lh-tight:          1.18;
+  --ta-lh-body:           1.62;
+
+  /* Eased off -0.035em: very tight tracking reads fashion/editorial. */
+  --ta-tr-display:        -0.024em;
+  --ta-tr-tight:          -0.02em;
+  --ta-tr-eyebrow:        0.16em;
+
+  /* ---- Spacing rhythm · 4px base, non-linear ------------------------ */
+  --ta-s1: 4px;   --ta-s2: 8px;   --ta-s3: 12px;  --ta-s4: 16px;
+  --ta-s5: 24px;  --ta-s6: 32px;  --ta-s7: 48px;  --ta-s8: 64px;
+  --ta-s9: 96px;  --ta-s10: 128px;
+
+  --ta-section-y:         clamp(72px, 9vw, 128px);
+
+  /* ---- Layout ------------------------------------------------------- */
+  --ta-max:               1320px;
+  --ta-gutter:            clamp(20px, 4vw, 56px);
+  --ta-col-gap:           clamp(24px, 3vw, 48px);
+  --ta-header-h:          76px;
+
+  /* ---- Radius & elevation ------------------------------------------- */
+  --ta-r-sm:              3px;
+  --ta-r-md:              6px;
+  --ta-shadow-1:          0 1px 2px rgba(13, 17, 26, 0.06), 0 4px 12px rgba(13, 17, 26, 0.06);
+  --ta-shadow-2:          0 2px 4px rgba(13, 17, 26, 0.06), 0 12px 32px rgba(13, 17, 26, 0.10);
+
+  /* ---- Motion ------------------------------------------------------- */
+  --ta-ease:              cubic-bezier(0.16, 1, 0.3, 1);
+  --ta-dur-1:             160ms;
+  --ta-dur-2:             260ms;
+  --ta-dur-3:             420ms;
+}
+
+@media (max-width: 900px) {
+  :root { --ta-header-h: 64px; }
+}
+
+/* ==========================================================================
+   BASE — scoped to the ta- namespace only
+   ========================================================================== */
+
+:where(.ta-header, .ta-hero) {
+  font-family: var(--ta-font);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:where(.ta-header, .ta-hero) *,
+:where(.ta-header, .ta-hero) *::before,
+:where(.ta-header, .ta-hero) *::after {
+  box-sizing: border-box;
+}
+
+/* Focus: legacy `a:focus { text-decoration: none }` strips affordance,
+   so every ta- component states its own visible focus ring. */
+:where(.ta-header, .ta-hero) :focus-visible {
+  outline: 2px solid var(--ta-accent-ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   LAYOUT PRIMITIVES
+   ========================================================================== */
+
+.ta-container {
+  width: 100%;
+  max-width: var(--ta-max);
+  margin-inline: auto;
+  padding-inline: var(--ta-gutter);
+}
+
+/* Visually hidden but available to assistive tech. */
+.ta-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ta-skip-link {
+  position: absolute;
+  top: var(--ta-s3);
+  left: var(--ta-s3);
+  z-index: 200;
+  padding: var(--ta-s3) var(--ta-s4);
+  font-family: var(--ta-font);
+  font-size: var(--ta-fs-sm);
+  font-weight: 600;
+  color: var(--ta-ink);
+  background: var(--ta-accent);
+  border-radius: var(--ta-r-sm);
+  text-decoration: none;
+  transform: translateY(calc(-100% - var(--ta-s5)));
+  transition: transform var(--ta-dur-2) var(--ta-ease);
+}
+
+.ta-skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   BUTTONS
+   Primary is ink-on-amber (8.14:1). White-on-amber measures 2.41:1 and
+   fails AA badly — never reintroduce it.
+   ========================================================================== */
+
+.ta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ta-s3);
+  padding: 15px 22px;
+  font-family: var(--ta-font);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--ta-tr-tight);
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--ta-r-sm);
+  cursor: pointer;
+  transition:
+    background-color var(--ta-dur-1) var(--ta-ease),
+    border-color var(--ta-dur-1) var(--ta-ease),
+    color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-btn__arrow {
+  flex: none;
+  transition: transform var(--ta-dur-2) var(--ta-ease);
+}
+
+.ta-btn:hover .ta-btn__arrow,
+.ta-btn:focus-visible .ta-btn__arrow {
+  transform: translateX(3px);
+}
+
+.ta-btn--primary {
+  background: var(--ta-accent);
+  color: var(--ta-ink);
+}
+
+.ta-btn--primary:hover,
+.ta-btn--primary:focus-visible {
+  background: var(--ta-accent-hi);
+  color: var(--ta-ink);
+}
+
+.ta-btn--ghost {
+  background: transparent;
+  color: var(--ta-ink);
+  border-color: var(--ta-rule);
+}
+
+.ta-btn--ghost:hover,
+.ta-btn--ghost:focus-visible {
+  background: var(--ta-surface-hover);
+  border-color: var(--ta-ink);
+  color: var(--ta-ink);
+}
+
+/* Quiet text action with a rule that draws in on hover. */
+.ta-link-action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ta-s2);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: var(--ta-tr-tight);
+  color: var(--ta-ink);
+  text-decoration: none;
+  padding-block: var(--ta-s2);
+  transition: color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-link-action::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--ta-dur-2) var(--ta-ease);
+}
+
+.ta-link-action {
+  position: relative;
+}
+
+.ta-link-action:hover,
+.ta-link-action:focus-visible {
+  color: var(--ta-accent-ink);
+}
+
+.ta-link-action:hover::after,
+.ta-link-action:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.ta-link-action .ta-btn__arrow {
+  transition: transform var(--ta-dur-2) var(--ta-ease);
+}
+
+.ta-link-action:hover .ta-btn__arrow,
+.ta-link-action:focus-visible .ta-btn__arrow {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   MOTION PREFERENCES
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .ta-header *,
+  .ta-hero * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

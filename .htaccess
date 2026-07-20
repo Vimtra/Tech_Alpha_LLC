@@ -1,0 +1,23 @@
+RewriteOptions inherit
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Redirect HTTP and WWW to HTTPS non-WWW
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.techalphallc\.com$ [NC]
+RewriteRule ^(.*)$ https://techalphallc.com/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Allow GoDaddy SSL validation
+RewriteCond %{REQUEST_URI} ^/.well-known/pki-validation/godaddy.html$
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [END]
+
+RewriteCond %{REQUEST_URI} ^/.well-known/pki-validation/godaddy.html$
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ /.well-known/pki-validation/godaddy.html [END]
+</IfModule>

@@ -1,0 +1,708 @@
+/* ==========================================================================
+   TECH ALPHA — HOMEPAGE HERO v2
+   Concept: "Power through precision" — modern corporate command centre.
+   Full-bleed dark canvas, animated mesh grid, split headline + metrics panel,
+   amber gradient wordmark, and a scrolling client marquee rail.
+
+   No external images used in this section.
+   CSS-only animations. Fully responsive.
+   Depends on: ta-system.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   HERO ROOT
+   -------------------------------------------------------------------------- */
+.ta-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--ta-header-h));
+  color: var(--ta-ink);
+  background: var(--ta-surface);
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   BACKGROUND SYSTEM
+   Three layers: animated mesh grid + two ambient orbs + diagonal rule line.
+   -------------------------------------------------------------------------- */
+.ta-hero__bg {
+  position: absolute;
+  /* extend the visual canvas upward so the hero background sits behind
+     the sticky header — this prevents a visible restart below the navbar */
+  top: calc(-1 * var(--ta-header-h));
+  left: 0;
+  right: 0;
+  height: calc(100% + var(--ta-header-h));
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Fine mesh grid — fades to edges via mask */
+.ta-hero__bg-mesh {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 68px 68px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 20%, transparent 100%);
+}
+
+/* Primary amber glow — behind the headline */
+.ta-hero__bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ta-hero__bg-orb--1 {
+  top: -25%;
+  left: -8%;
+  width: min(920px, 72vw);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(248, 151, 35, 0.13) 0%, transparent 62%);
+}
+
+/* Secondary cool glow — depth from the right */
+.ta-hero__bg-orb--2 {
+  top: 20%;
+  right: -18%;
+  width: min(680px, 54vw);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(56, 107, 213, 0.09) 0%, transparent 65%);
+}
+
+/* Tertiary orb — bottom depth anchor */
+.ta-hero__bg-orb--3 {
+  bottom: 0;
+  left: 25%;
+  width: min(560px, 45vw);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(248, 151, 35, 0.05) 0%, transparent 65%);
+}
+
+/* Diagonal amber accent line — architectural tension */
+.ta-hero__bg-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 52%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(248, 151, 35, 0.22) 25%,
+    rgba(248, 151, 35, 0.35) 50%,
+    rgba(248, 151, 35, 0.10) 75%,
+    transparent 100%
+  );
+  transform: rotate(-6deg) scaleX(1.3);
+  transform-origin: center;
+}
+
+/* --------------------------------------------------------------------------
+   CONTAINER — fills the full hero height, stacks eyebrow → split → marquee
+   -------------------------------------------------------------------------- */
+.ta-hero > .ta-container {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(52px, 7vw, 92px);
+  padding-bottom: clamp(52px, 7vw, 92px);
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW BADGE
+   Amber-ringed pill with a pulsing live-dot — "we are active, we are real."
+   -------------------------------------------------------------------------- */
+.ta-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ta-s3);
+  padding: 8px 18px 8px 12px;
+  margin-bottom: clamp(36px, 5vw, 60px);
+  background: rgba(248, 151, 35, 0.07);
+  border: 1px solid rgba(248, 151, 35, 0.28);
+  border-radius: 100px;
+  font-family: var(--ta-font-mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ta-accent-ink);
+  width: fit-content;
+}
+
+.ta-hero__eyebrow-dot {
+  display: block;
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ta-accent);
+  box-shadow: 0 0 0 0 rgba(248, 151, 35, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   MAIN SPLIT: headline left | panel right
+   -------------------------------------------------------------------------- */
+.ta-hero__split {
+  display: grid;
+  grid-template-columns: 1fr 432px;
+  gap: clamp(48px, 6vw, 100px);
+  align-items: center;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   LEFT COLUMN — Headline, sub, CTAs, trust rail
+   -------------------------------------------------------------------------- */
+.ta-hero__lede {
+  max-width: 700px;
+}
+
+/* The flagship H1 */
+.ta-hero__title {
+  margin: 0 0 var(--ta-s6);
+  font-family: var(--ta-font);
+  font-size: clamp(44px, 5.6vw, 80px);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  color: var(--ta-ink);
+}
+
+/* Amber gradient highlight word — the visual anchor */
+.ta-hero__title-em {
+  font-style: normal;
+  display: inline;
+  color: transparent;
+  background: linear-gradient(120deg, #f89723 0%, #ffb254 55%, #f89723 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+/* Subtle underline beneath the highlighted word */
+.ta-hero__title-em::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ta-accent), rgba(248, 151, 35, 0.3));
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+.ta-hero__sub {
+  margin: 0 0 var(--ta-s7);
+  font-size: clamp(16px, 1.2vw, 19px);
+  font-weight: 400;
+  line-height: 1.68;
+  color: var(--ta-ink-body);
+  max-width: 530px;
+}
+
+/* CTA buttons */
+.ta-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ta-s4);
+  flex-wrap: wrap;
+  margin-bottom: var(--ta-s8);
+}
+
+/* Hero-scale button override */
+.ta-hero__actions .ta-btn {
+  padding: 17px 30px;
+  font-size: 15px;
+  border-radius: 6px;
+}
+
+/* Ghost button (outline) */
+.ta-hero__actions .ta-btn--ghost {
+  background: transparent;
+  color: var(--ta-ink);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ta-hero__actions .ta-btn--ghost:hover,
+.ta-hero__actions .ta-btn--ghost:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--ta-ink);
+}
+
+/* --------------------------------------------------------------------------
+   TRUST STRIP — client names below the CTAs
+   -------------------------------------------------------------------------- */
+.ta-hero__trust {
+  display: flex;
+  align-items: center;
+  gap: var(--ta-s5);
+  flex-wrap: wrap;
+}
+
+.ta-hero__trust-label {
+  flex-shrink: 0;
+  font-family: var(--ta-font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ta-ink-mute);
+}
+
+.ta-hero__trust-names {
+  display: flex;
+  align-items: center;
+  gap: var(--ta-s3);
+  flex-wrap: wrap;
+}
+
+.ta-hero__trust-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ta-ink-body);
+  white-space: nowrap;
+  transition: color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-hero__trust-name:hover {
+  color: var(--ta-ink);
+}
+
+.ta-hero__trust-sep {
+  display: block;
+  flex-shrink: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   RIGHT COLUMN — Glassmorphism metrics panel
+   -------------------------------------------------------------------------- */
+.ta-hero__panel {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Outer glow ring — a halo, not a border */
+.ta-hero__panel::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  border-radius: 28px;
+  background: radial-gradient(ellipse at center, rgba(248, 151, 35, 0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.ta-hero__panel-inner {
+  position: relative;
+  padding: clamp(28px, 3vw, 44px);
+  background: rgba(255, 255, 255, 0.028);
+  border: 1px solid rgba(248, 151, 35, 0.18);
+  border-radius: 18px;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 48px 96px rgba(0, 0, 0, 0.45),
+    0 0 80px rgba(248, 151, 35, 0.05);
+}
+
+/* Top amber edge accent — the "hot edge" of the panel */
+.ta-hero__panel-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    175deg,
+    rgba(248, 151, 35, 0.15) 0%,
+    transparent 35%
+  );
+  pointer-events: none;
+}
+
+.ta-hero__panel-inner::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ta-accent) 50%, transparent);
+  border-radius: 2px;
+}
+
+/* Panel header */
+.ta-hero__panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(20px, 2.5vw, 32px);
+  padding-bottom: clamp(16px, 2vw, 24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.ta-hero__panel-title {
+  font-family: var(--ta-font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ta-ink-mute);
+  margin: 0;
+}
+
+.ta-hero__panel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 100px;
+  font-family: var(--ta-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4ade80;
+}
+
+.ta-hero__panel-badge-dot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+}
+
+/* Stats grid — 2×2 */
+.ta-hero__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: clamp(20px, 2.5vw, 32px);
+}
+
+.ta-hero__stat {
+  padding: clamp(16px, 2vw, 24px) clamp(14px, 1.8vw, 22px);
+  background: rgba(13, 17, 26, 0.55);
+  position: relative;
+  transition: background-color var(--ta-dur-2) var(--ta-ease);
+}
+
+.ta-hero__stat:hover {
+  background: rgba(248, 151, 35, 0.05);
+}
+
+.ta-hero__stat-num {
+  display: block;
+  font-size: clamp(30px, 3.2vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--ta-accent-ink);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: var(--ta-s2);
+}
+
+.ta-hero__stat-label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ta-ink-mute);
+}
+
+/* Service capability tags */
+.ta-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ta-s2);
+}
+
+.ta-hero__tag {
+  display: inline-block;
+  padding: 5px 11px;
+  background: rgba(248, 151, 35, 0.07);
+  border: 1px solid rgba(248, 151, 35, 0.18);
+  border-radius: 4px;
+  font-family: var(--ta-font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(248, 151, 35, 0.8);
+  white-space: nowrap;
+  transition:
+    background-color var(--ta-dur-1) var(--ta-ease),
+    color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-hero__tag:hover {
+  background: rgba(248, 151, 35, 0.14);
+  color: var(--ta-accent-ink);
+}
+
+/* --------------------------------------------------------------------------
+   SCROLLING MARQUEE RAIL — bottom of the hero
+   -------------------------------------------------------------------------- */
+.ta-hero__marquee {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(40px, 5vw, 72px);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 18px 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.012);
+}
+
+/* Fade masks on the edges so items emerge from the void */
+.ta-hero__marquee::before,
+.ta-hero__marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(60px, 8vw, 120px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ta-hero__marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--ta-surface), transparent);
+}
+
+.ta-hero__marquee::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--ta-surface), transparent);
+}
+
+.ta-hero__marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 0;
+}
+
+/* Each repeating unit of the marquee */
+.ta-hero__marquee-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 4.5vw, 64px);
+  padding-right: clamp(32px, 4.5vw, 64px);
+}
+
+.ta-hero__marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(32px, 4.5vw, 64px);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ta-ink-mute);
+  white-space: nowrap;
+}
+
+.ta-hero__marquee-dot {
+  display: block;
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ta-accent);
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   All keyframes rest at their natural state at 0%/100% so that stalled
+   animations (tab backgrounded, frozen renderer) are indistinguishable from
+   the at-rest state. No element is hidden by default — animation enhances,
+   it does not reveal.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Orb drift — slow, organic */
+  .ta-hero__bg-orb--1 {
+    animation: ta-orb-a 22s ease-in-out infinite;
+  }
+  .ta-hero__bg-orb--2 {
+    animation: ta-orb-b 30s ease-in-out infinite;
+  }
+  .ta-hero__bg-orb--3 {
+    animation: ta-orb-a 38s ease-in-out infinite reverse;
+  }
+
+  /* Live-dot pulse */
+  .ta-hero__eyebrow-dot {
+    animation: ta-live-dot 2.8s ease-in-out infinite;
+  }
+
+  /* Panel badge dot */
+  .ta-hero__panel-badge-dot {
+    animation: ta-live-dot 2s ease-in-out infinite 0.4s;
+  }
+
+  /* Staggered entrance: left column cascades downward */
+  .ta-hero__eyebrow {
+    animation: ta-fade-up 0.7s var(--ta-ease) 0.05s both;
+  }
+  .ta-hero__title {
+    animation: ta-fade-up 0.8s var(--ta-ease) 0.15s both;
+  }
+  .ta-hero__sub {
+    animation: ta-fade-up 0.8s var(--ta-ease) 0.28s both;
+  }
+  .ta-hero__actions {
+    animation: ta-fade-up 0.8s var(--ta-ease) 0.40s both;
+  }
+  .ta-hero__trust {
+    animation: ta-fade-up 0.8s var(--ta-ease) 0.52s both;
+  }
+
+  /* Panel slides in from the right */
+  .ta-hero__panel {
+    animation: ta-fade-in-right 0.9s var(--ta-ease) 0.2s both;
+  }
+
+  /* Marquee scroll */
+  .ta-hero__marquee-track {
+    animation: ta-marquee 32s linear infinite;
+  }
+}
+
+@keyframes ta-orb-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(5%, 8%) scale(1.18); }
+}
+
+@keyframes ta-orb-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(-7%, -5%) scale(0.85); }
+}
+
+@keyframes ta-live-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0   rgba(248, 151, 35, 0.5); }
+  50%       { opacity: 0.6; box-shadow: 0 0 0 6px rgba(248, 151, 35, 0); }
+}
+
+@keyframes ta-fade-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ta-fade-in-right {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ta-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1140px) {
+  .ta-hero__split {
+    grid-template-columns: 1fr 380px;
+    gap: clamp(40px, 5vw, 72px);
+  }
+}
+
+@media (max-width: 960px) {
+  .ta-hero__split {
+    grid-template-columns: 1fr;
+    gap: clamp(44px, 6vw, 72px);
+    align-items: start;
+  }
+
+  .ta-hero__lede {
+    max-width: 100%;
+  }
+
+  .ta-hero__sub {
+    max-width: 100%;
+  }
+
+  .ta-hero__title {
+    font-size: clamp(38px, 6.5vw, 60px);
+  }
+
+  .ta-hero__panel {
+    max-width: 560px;
+  }
+
+  .ta-hero__panel::before {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .ta-hero > .ta-container {
+    padding-top: clamp(36px, 6vw, 60px);
+    padding-bottom: clamp(36px, 6vw, 60px);
+  }
+
+  .ta-hero__eyebrow {
+    font-size: 9.5px;
+  }
+
+  .ta-hero__title {
+    font-size: clamp(34px, 9.5vw, 50px);
+    letter-spacing: -0.028em;
+  }
+
+  .ta-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--ta-s3);
+  }
+
+  .ta-hero__actions .ta-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 18px 24px;
+  }
+
+  .ta-hero__trust {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ta-s3);
+  }
+
+  .ta-hero__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ta-hero__panel {
+    max-width: 100%;
+  }
+}

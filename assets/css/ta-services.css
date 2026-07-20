@@ -1,0 +1,365 @@
+/* ==========================================================================
+   TECH ALPHA — SERVICES SECTION
+   Modern corporate service cards. Three-column grid, image + body layout,
+   glassmorphism border treatment, amber accent bar on hover.
+   Depends on: ta-system.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   SECTION ROOT
+   -------------------------------------------------------------------------- */
+.ta-services {
+  position: relative;
+  padding-top: clamp(80px, 10vw, 140px);
+  padding-bottom: clamp(80px, 10vw, 140px);
+  background: var(--ta-surface);
+  font-family: var(--ta-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ta-services *,
+.ta-services *::before,
+.ta-services *::after {
+  box-sizing: border-box;
+}
+
+/* Subtle top border to mark the section break */
+.ta-services::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--ta-gutter);
+  right: var(--ta-gutter);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.08) 70%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION HEADER — editorial two-column layout
+   -------------------------------------------------------------------------- */
+.ta-services__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: end;
+  margin-bottom: clamp(48px, 7vw, 80px);
+}
+
+/* Eyebrow — small labelled horizontal rule */
+.ta-services__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--ta-s4);
+  margin: 0 0 var(--ta-s5);
+  font-family: var(--ta-font-mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ta-accent-ink);
+}
+
+.ta-services__eyebrow-line {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--ta-accent);
+  flex-shrink: 0;
+}
+
+.ta-services__title {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ta-ink);
+}
+
+/* Italic em word — italic but in the brand amber */
+.ta-services__title-em {
+  font-style: italic;
+  color: var(--ta-accent-ink);
+}
+
+.ta-services__header-body {
+  margin: 0 0 var(--ta-s6);
+  font-size: var(--ta-fs-base);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--ta-ink-body);
+}
+
+.ta-services__all-link {
+  /* Inherits ta-btn ta-btn--ghost from ta-system.css */
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   CARD GRID — three equal columns
+   -------------------------------------------------------------------------- */
+.ta-services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.5vw, 32px);
+}
+
+/* --------------------------------------------------------------------------
+   SERVICE CARD (ta-scard)
+   -------------------------------------------------------------------------- */
+.ta-scard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--ta-panel);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  transition:
+    transform var(--ta-dur-2) var(--ta-ease),
+    border-color var(--ta-dur-2) var(--ta-ease),
+    box-shadow var(--ta-dur-2) var(--ta-ease);
+}
+
+.ta-scard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(248, 151, 35, 0.3);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(248, 151, 35, 0.12),
+    0 0 40px rgba(248, 151, 35, 0.06);
+}
+
+/* Featured (middle) card — slightly elevated by default */
+.ta-scard--featured {
+  border-color: rgba(248, 151, 35, 0.18);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(248, 151, 35, 0.08);
+}
+
+.ta-scard--featured:hover {
+  border-color: rgba(248, 151, 35, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   CARD IMAGE
+   -------------------------------------------------------------------------- */
+.ta-scard__image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+}
+
+.ta-scard__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s var(--ta-ease);
+  filter: brightness(0.82) saturate(0.9);
+}
+
+.ta-scard:hover .ta-scard__image {
+  transform: scale(1.04);
+  filter: brightness(0.9) saturate(1);
+}
+
+/* Dark gradient overlay over the image — ensures text contrast below */
+.ta-scard__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 17, 26, 0)    0%,
+    rgba(13, 17, 26, 0.15) 60%,
+    rgba(13, 17, 26, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   CARD BODY
+   -------------------------------------------------------------------------- */
+.ta-scard__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(22px, 2.4vw, 32px);
+  gap: 0;
+}
+
+/* Dual-purpose header row: icon left, number right */
+.ta-scard__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(248, 151, 35, 0.1);
+  border: 1px solid rgba(248, 151, 35, 0.2);
+  color: var(--ta-accent-ink);
+  margin-bottom: var(--ta-s4);
+  transition:
+    background-color var(--ta-dur-1) var(--ta-ease),
+    border-color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-scard:hover .ta-scard__icon {
+  background: rgba(248, 151, 35, 0.18);
+  border-color: rgba(248, 151, 35, 0.4);
+}
+
+/* Number — oversized, muted, top-right */
+.ta-scard__num {
+  position: absolute;
+  top: clamp(22px, 2.4vw, 32px);
+  right: clamp(22px, 2.4vw, 32px);
+  font-family: var(--ta-font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.18);
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+.ta-scard__title {
+  margin: 0 0 var(--ta-s3);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  color: var(--ta-ink);
+  transition: color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-scard:hover .ta-scard__title {
+  color: #ffffff;
+}
+
+.ta-scard__text {
+  margin: 0 0 var(--ta-s6);
+  font-size: var(--ta-fs-sm);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ta-ink-mute);
+  flex: 1;
+}
+
+/* "Learn more" inline link at the bottom */
+.ta-scard__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ta-s2);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ta-accent-ink);
+  text-decoration: none;
+  margin-top: auto;
+  transition:
+    gap var(--ta-dur-2) var(--ta-ease),
+    color var(--ta-dur-1) var(--ta-ease);
+}
+
+.ta-scard__link:hover,
+.ta-scard__link:focus-visible {
+  color: var(--ta-accent-hi);
+  gap: var(--ta-s3);
+}
+
+.ta-scard__link:focus-visible {
+  outline: 2px solid var(--ta-accent-ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   AMBER ACCENT BAR
+   Slides up from zero height on hover — the amber underline of the card.
+   -------------------------------------------------------------------------- */
+.ta-scard__accent-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--ta-accent) 40%, #ffb254 60%, transparent 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ta-ease);
+}
+
+.ta-scard:hover .ta-scard__accent-bar {
+  transform: scaleX(1);
+}
+
+.ta-scard--featured .ta-scard__accent-bar {
+  transform: scaleX(0.4);
+  opacity: 0.5;
+}
+
+.ta-scard--featured:hover .ta-scard__accent-bar {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .ta-services__header {
+    grid-template-columns: 1fr;
+    gap: var(--ta-s6);
+  }
+
+  .ta-services__grid {
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 28px);
+  }
+
+  .ta-scard__image-wrap {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+@media (max-width: 640px) {
+  .ta-services {
+    padding-top: clamp(60px, 10vw, 96px);
+    padding-bottom: clamp(60px, 10vw, 96px);
+  }
+
+  .ta-scard__image-wrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  .ta-scard:hover {
+    transform: none;
+  }
+}
+
+/* Accessibility — focus ring */
+.ta-scard:focus-within {
+  outline: 2px solid var(--ta-accent-ink);
+  outline-offset: 3px;
+}
+
+/* Reduced motion — disable transforms */
+@media (prefers-reduced-motion: reduce) {
+  .ta-scard,
+  .ta-scard__image,
+  .ta-scard__accent-bar,
+  .ta-scard__link {
+    transition: none !important;
+  }
+
+  .ta-scard:hover {
+    transform: none;
+  }
+}
