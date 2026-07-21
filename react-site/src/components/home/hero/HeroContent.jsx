@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, Play } from 'lucide-react'
-import HeroFeatureChips from './HeroFeatureChips'
 
 const container = {
   hidden: { opacity: 1 },
@@ -79,10 +77,7 @@ function HeroContent() {
         </Link>
       </motion.div>
 
-      {/* Feature chips */}
-      <motion.div variants={item}>
-        <HeroFeatureChips />
-      </motion.div>
+      {/* Feature chips removed per request */}
     </motion.div>
   )
 }

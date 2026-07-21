@@ -36,9 +36,16 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5 lg:px-8">
       <div
-        className={`mx-auto max-w-7xl rounded-[26px] border border-hairline backdrop-blur-xl transition-all duration-500 ${
-          isScrolled ? 'bg-surface/70 shadow-glass' : 'bg-transparent shadow-none'
-        }`}
+        className="mx-auto max-w-7xl rounded-[26px] transition-all duration-500"
+        style={{
+          background: isScrolled ? 'rgba(9, 16, 35, 0.55)' : 'rgba(9, 16, 35, 0.35)',
+          backdropFilter: 'blur(20px) saturate(140%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+          border: '1px solid rgba(120, 170, 255, 0.10)',
+          boxShadow: isScrolled
+            ? '0 20px 60px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04)'
+            : '0 12px 36px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.04)',
+        }}
       >
         <div className="flex min-h-[68px] items-center justify-between gap-4 px-4 sm:px-5 lg:px-6">
           <Link
@@ -51,7 +58,11 @@ function Navbar() {
 
           <nav
             aria-label="Primary"
-            className="hidden items-center justify-center gap-0.5 rounded-pill border border-hairline bg-white/[0.03] p-1 lg:flex"
+            className="hidden items-center justify-center gap-0.5 rounded-pill p-1 lg:flex"
+            style={{
+              background: 'rgba(255, 255, 255, 0.02)',
+              border: '1px solid rgba(120, 170, 255, 0.08)',
+            }}
           >
             {navigationLinks.map((link) => (
               <NavLink
@@ -60,24 +71,37 @@ function Navbar() {
                 end={link.to === '/'}
                 className={({ isActive }) =>
                   `group relative rounded-pill px-3 py-2.5 text-sm font-medium transition duration-300 xl:px-4 ${
-                    isActive ? 'text-ink' : 'text-ink-muted hover:text-ink'
+                    isActive ? 'text-white' : 'text-slate-300 hover:text-white'
                   }`
                 }
               >
                 {({ isActive }) => (
                   <>
                     <span
-                      className={`absolute inset-0 rounded-pill transition duration-300 ${
-                        isActive ? 'bg-white/[0.07]' : 'bg-transparent group-hover:bg-brand/10'
-                      }`}
+                      className="absolute inset-0 rounded-pill transition duration-300"
+                      style={{
+                        background: isActive
+                          ? 'rgba(79, 140, 255, 0.10)'
+                          : 'transparent',
+                        boxShadow: isActive
+                          ? '0 0 20px rgba(79, 140, 255, 0.18), inset 0 0 0 1px rgba(120, 170, 255, 0.10)'
+                          : 'none',
+                      }}
                     />
+                    {!isActive && (
+                      <span
+                        className="absolute inset-0 rounded-pill opacity-0 transition duration-300 group-hover:opacity-100"
+                        style={{ background: 'rgba(79, 140, 255, 0.08)' }}
+                      />
+                    )}
                     <span className="relative z-10">{link.label}</span>
                     <span
-                      className={`absolute inset-x-3 -bottom-0.5 h-px rounded-pill bg-brand-gradient transition duration-300 ${
+                      className={`absolute inset-x-3 -bottom-0.5 h-px rounded-pill transition duration-300 ${
                         isActive
                           ? 'scale-x-100 opacity-100'
                           : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-70'
                       }`}
+                      style={{ background: 'linear-gradient(90deg, transparent, #F89723, transparent)' }}
                     />
                   </>
                 )}
@@ -88,7 +112,8 @@ function Navbar() {
           <div className="hidden items-center justify-end gap-3 lg:flex">
             <Link
               to={contactCta.to}
-              className="group inline-flex h-11 shrink-0 items-center justify-center rounded-pill bg-brand-gradient px-5 text-sm font-semibold text-[#12161f] shadow-brand transition duration-300 hover:-translate-y-0.5 hover:shadow-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              className="group inline-flex h-11 shrink-0 items-center justify-center rounded-pill bg-brand-gradient px-5 text-sm font-semibold text-[#12161f] transition duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              style={{ boxShadow: '0 8px 24px rgba(248, 151, 35, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.25)' }}
             >
               <span className="whitespace-nowrap">{contactCta.label}</span>
               <span className="ml-2 transition duration-300 group-hover:translate-x-0.5" aria-hidden="true">

@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import HeroBackground from './hero/HeroBackground'
 import HeroContent from './hero/HeroContent'
-import HeroGlobe from './hero/HeroGlobe'
 
 /**
  * Hero — Tech Alpha LLC
@@ -23,11 +22,8 @@ function Hero() {
     >
       <HeroBackground sectionRef={sectionRef} />
 
-      <div className="relative z-10 mx-auto grid h-full w-full max-w-[1500px] items-center gap-8 px-6 py-12 lg:grid-cols-[46fr_54fr] lg:gap-4 lg:px-10 lg:py-6 xl:gap-6">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1500px] items-center gap-8 px-6 py-12 lg:px-10 lg:py-6 xl:gap-6">
         <HeroContent />
-        <div className="mx-auto w-full max-w-[720px] lg:-mt-4 lg:justify-self-center">
-          <HeroGlobe sectionRef={sectionRef} />
-        </div>
       </div>
     </section>
   )
