@@ -184,7 +184,9 @@ export function Navbar() {
           id="mobile-nav"
           className={cn(
             'grid transition-all duration-300 lg:hidden',
-            isMenuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
+            isMenuOpen
+              ? 'pointer-events-auto grid-rows-[1fr] opacity-100'
+              : 'pointer-events-none grid-rows-[0fr] opacity-0',
           )}
         >
           <div className="overflow-hidden">

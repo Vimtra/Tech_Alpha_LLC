@@ -46,6 +46,34 @@ export function websiteJsonLd() {
   } as const
 }
 
+type Service = { name: string; description: string; slug: string }
+
+export function serviceCatalogJsonLd(services: readonly Service[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${siteConfig.url}#services`,
+    provider: { '@id': `${siteConfig.url}#organization` },
+    serviceType: 'Enterprise IT Consulting',
+    areaServed: siteConfig.organization.areaServed,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${siteConfig.name} — Enterprise Services`,
+      itemListElement: services.map((s, i) => ({
+        '@type': 'Offer',
+        position: i + 1,
+        itemOffered: {
+          '@type': 'Service',
+          name: s.name,
+          description: s.description,
+          url: `${siteConfig.url}/services#${s.slug}`,
+          provider: { '@id': `${siteConfig.url}#organization` },
+        },
+      })),
+    },
+  } as const
+}
+
 export function breadcrumbJsonLd(items: Array<{ name: string; url: string }>) {
   return {
     '@context': 'https://schema.org',

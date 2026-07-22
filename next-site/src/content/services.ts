@@ -1,6 +1,6 @@
 import { routes } from '@/constants/routes'
 
-export type ServiceIconName = 'cloud' | 'brain' | 'layers'
+export type ServiceIconName = 'cloud' | 'wrench' | 'support'
 
 export type ServicePreview = {
   slug: string
@@ -13,41 +13,41 @@ export type ServicePreview = {
 
 export const servicesPreview: readonly ServicePreview[] = [
   {
-    slug: 'cloud-devops',
-    tag: 'Cloud · DevOps',
-    title: 'Cloud & DevOps',
+    slug: 'cloud-consulting',
+    tag: 'Cloud · Strategy',
+    title: 'Cloud Consulting',
     description:
-      'AWS-certified CI/CD pipelines, hybrid infrastructure, and cloud migration — from architecture through 24/7 operations.',
+      'Assessment, design, strategy, planning, and prototype (PoC) — including DevOps strategy, cloud deployment, and IDC migration across AWS and Azure.',
     iconName: 'cloud',
     href: routes.services,
   },
   {
-    slug: 'data-ai',
-    tag: 'Data · AI',
-    title: 'Data & AI',
+    slug: 'technical-assistance',
+    tag: 'ERP · SAP · Integration',
+    title: 'Technical Assistance',
     description:
-      'Capture structured and unstructured data at the source and turn it into insight — pipelines, ML, and predictive analytics.',
-    iconName: 'brain',
+      'Hands-on deployment and migration of ERP applications, SAP services, application optimization, and infrastructure integration across the full stack.',
+    iconName: 'wrench',
     href: routes.services,
   },
   {
-    slug: 'application-engineering',
-    tag: 'Applications',
-    title: 'Application Engineering',
+    slug: 'proactive-support',
+    tag: '24/7 · Managed',
+    title: 'Proactive Support',
     description:
-      'Enterprise Java, .NET, ERP, and quality automation aligned to business objectives across the full software lifecycle.',
-    iconName: 'layers',
+      '24/7 monitoring, management, and support with a dedicated technical consultant assigned to every client engagement.',
+    iconName: 'support',
     href: routes.services,
   },
 ] as const
 
 export const servicesPreviewSection = {
-  eyebrow: 'Core Services',
+  eyebrow: 'Enterprise Services',
   headline: {
-    lead: 'Enterprise solutions engineered for',
-    accent: 'cloud & AI',
+    lead: 'From cloud strategy to',
+    accent: 'proactive operations',
     tail: '.',
   },
   description:
-    'AWS-certified engineers deliver assessment, design, strategy, prototype, and hands-on migration across the entire technology stack — with a dedicated technical consultant assigned to every client.',
+    'Three service lines cover the entire enterprise consulting engagement — from first assessment through 24/7 support, delivered by AWS-experienced engineers and a dedicated technical consultant.',
 } as const

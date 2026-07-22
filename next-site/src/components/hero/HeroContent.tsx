@@ -43,7 +43,7 @@ export function HeroContent() {
           style={{ backgroundImage: 'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)' }}
         >
           {headline.accent}
-        </span>{' '}
+        </span>
         {headline.tail}
       </motion.h1>
 

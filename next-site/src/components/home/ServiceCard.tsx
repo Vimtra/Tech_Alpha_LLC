@@ -2,13 +2,13 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, BrainCircuit, CloudCog, Layers, type LucideIcon } from 'lucide-react'
+import { ArrowUpRight, CloudCog, Headphones, Wrench, type LucideIcon } from 'lucide-react'
 import type { ServiceIconName, ServicePreview } from '@/content/services'
 
 const ICONS: Record<ServiceIconName, LucideIcon> = {
   cloud: CloudCog,
-  brain: BrainCircuit,
-  layers: Layers,
+  wrench: Wrench,
+  support: Headphones,
 }
 
 type Props = ServicePreview & { index: number }

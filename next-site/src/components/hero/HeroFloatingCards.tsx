@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { BrainCircuit, Cloud, GitBranch, ShieldCheck, type LucideIcon } from 'lucide-react'
+import { Cloud, GitBranch, HardDrive, Wrench, type LucideIcon } from 'lucide-react'
 
 type FloatingCard = {
   Icon: LucideIcon
@@ -17,18 +17,18 @@ type FloatingCard = {
 const CARDS: readonly FloatingCard[] = [
   {
     Icon: Cloud,
-    title: 'Enterprise Cloud',
-    subtitle: 'AWS · Azure · Hybrid',
+    title: 'Cloud Strategy',
+    subtitle: 'Assessment · Design · Prototype',
     top: '22%',
     right: '4%',
-    width: '220px',
+    width: '240px',
     dur: 11,
     delay: 0.2,
   },
   {
-    Icon: BrainCircuit,
-    title: 'Artificial Intelligence',
-    subtitle: 'ML · Predictive · GenAI',
+    Icon: GitBranch,
+    title: 'DevOps & CI/CD',
+    subtitle: 'Pipelines · AWS · Azure',
     top: '40%',
     right: '24%',
     width: '230px',
@@ -36,22 +36,22 @@ const CARDS: readonly FloatingCard[] = [
     delay: 1.4,
   },
   {
-    Icon: ShieldCheck,
-    title: 'Cyber Security',
-    subtitle: 'IAM · Zero-Trust',
+    Icon: HardDrive,
+    title: 'IDC Migration',
+    subtitle: 'Data Center · Hybrid Cloud',
     top: '62%',
     right: '3%',
-    width: '210px',
+    width: '230px',
     dur: 12,
     delay: 0.8,
   },
   {
-    Icon: GitBranch,
-    title: 'DevOps · CI/CD',
-    subtitle: 'Pipelines · Automation',
+    Icon: Wrench,
+    title: 'Managed ERP · SAP',
+    subtitle: 'App Services · Optimization',
     top: '82%',
     right: '22%',
-    width: '220px',
+    width: '240px',
     dur: 10.5,
     delay: 2,
   },

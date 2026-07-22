@@ -49,6 +49,34 @@
   --animate-hero-in: hero-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-hero-streak: hero-streak 26s ease-in-out infinite;
   --animate-hero-streak-alt: hero-streak-alt 32s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-slow-spin: slow-spin 60s linear infinite;
+  --animate-slow-spin-reverse: slow-spin-reverse 90s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+  @keyframes slow-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes slow-spin-reverse {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
 
   @keyframes aurora-drift {
     0%,
