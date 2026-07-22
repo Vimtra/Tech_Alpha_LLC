@@ -1,22 +1,77 @@
 import type { Metadata } from 'next'
+import { ClosingCta } from '@/components/home/ClosingCta'
+import { JsonLd } from '@/components/common/JsonLd'
+import { ServiceChapter } from '@/components/services/ServiceChapter'
+import { ServicesHero } from '@/components/services/ServicesHero'
+import { ServicesSideNav } from '@/components/services/ServicesSideNav'
 import { Container } from '@/components/ui/Container'
+import { siteConfig } from '@/constants/siteConfig'
+import { servicesFullDetail } from '@/content/services'
+import { breadcrumbJsonLd, itemListJsonLd } from '@/lib/jsonld'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Services',
+  title: 'Enterprise Services',
   description:
-    'DevOps, cloud engineering, big data, application development, business analysis, and QA automation for enterprise organizations.',
+    'DevOps, hybrid infrastructure, big data, application delivery, business analysis, and quality automation — six enterprise capabilities delivered by Tech Alpha LLC with AWS-experienced engineers and 24/7 proactive support.',
   path: '/services',
+  keywords: [
+    'Enterprise services',
+    'DevOps',
+    'CI/CD pipelines',
+    'Data center solutions',
+    'Hybrid cloud',
+    'Big data analytics',
+    'Application development',
+    'Enterprise Java',
+    'ERP',
+    'SAP',
+    'Business analysis',
+    'Quality assurance',
+    'Test automation',
+    'AWS consulting',
+    'Azure consulting',
+    'Tech Alpha LLC',
+  ],
 })
 
 export default function ServicesPage() {
   return (
-    <Container className="py-24">
-      <p className="text-brand-soft font-mono text-xs tracking-[0.24em] uppercase">Services</p>
-      <h1 className="text-ink mt-6 text-5xl font-bold tracking-tight sm:text-6xl">Services</h1>
-      <p className="text-ink-muted mt-6 max-w-2xl text-lg leading-relaxed">
-        Section content lands in Step 6.
-      </p>
-    </Container>
+    <>
+      <ServicesHero />
+
+      <section aria-label="Enterprise services detail" className="relative py-16 sm:py-24">
+        <Container size="wide" className="max-w-[1440px]">
+          <div className="grid gap-12 lg:grid-cols-[0.28fr_0.72fr] lg:gap-16">
+            <ServicesSideNav />
+            <div className="space-y-8 sm:space-y-10">
+              {servicesFullDetail.map((service, i) => (
+                <ServiceChapter key={service.slug} service={service} index={i} />
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <ClosingCta />
+
+      <JsonLd
+        id="jsonld-services-list"
+        data={itemListJsonLd(
+          servicesFullDetail.map((s) => ({
+            name: s.title,
+            url: `${siteConfig.url}/services#${s.slug}`,
+            description: s.summary,
+          })),
+        )}
+      />
+      <JsonLd
+        id="jsonld-services-breadcrumbs"
+        data={breadcrumbJsonLd([
+          { name: 'Home', url: siteConfig.url },
+          { name: 'Services', url: `${siteConfig.url}/services` },
+        ])}
+      />
+    </>
   )
 }

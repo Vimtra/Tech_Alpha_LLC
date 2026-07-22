@@ -74,6 +74,20 @@ export function serviceCatalogJsonLd(services: readonly Service[]) {
   } as const
 }
 
+export function itemListJsonLd(items: Array<{ name: string; url: string; description?: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      url: item.url,
+      ...(item.description ? { description: item.description } : {}),
+    })),
+  } as const
+}
+
 export function breadcrumbJsonLd(items: Array<{ name: string; url: string }>) {
   return {
     '@context': 'https://schema.org',
