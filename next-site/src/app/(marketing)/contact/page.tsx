@@ -1,22 +1,13 @@
 import type { Metadata } from 'next'
 import { Container } from '@/components/ui/Container'
+import { siteConfig } from '@/constants/siteConfig'
 import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = buildMetadata({
-  title: 'Contact',
-  description:
-    'Schedule a consultation with Tech Alpha LLC — cloud, DevOps, AI, and enterprise IT services from McKinney, TX.',
-  path: '/contact',
-})
+export const metadata: Metadata = buildMetadata({ title: 'Contact', description: 'Start a conversation with Tech Alpha LLC about cloud consulting, DevOps, migration, ERP, and support.', path: '/contact' })
 
 export default function ContactPage() {
-  return (
-    <Container className="py-24">
-      <p className="text-brand-soft font-mono text-xs tracking-[0.24em] uppercase">Contact</p>
-      <h1 className="text-ink mt-6 text-5xl font-bold tracking-tight sm:text-6xl">Get in touch</h1>
-      <p className="text-ink-muted mt-6 max-w-2xl text-lg leading-relaxed">
-        Section content lands in Step 13.
-      </p>
-    </Container>
-  )
+  return <Container className="py-20 sm:py-28"><div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+    <div><p className="text-brand-soft font-mono text-xs tracking-[0.24em] uppercase">Contact</p><h1 className="text-ink mt-6 text-4xl font-bold tracking-tight sm:text-6xl">Let&apos;s talk about your environment</h1><p className="text-ink-muted mt-6 max-w-xl text-lg leading-relaxed">Share what you are working through. Our team can help you discuss cloud consulting, DevOps, migration, managed ERP and SAP services, application optimization, or proactive support.</p><div className="text-ink-muted mt-10 space-y-4 text-sm"><a className="block hover:text-ink" href={'mailto:' + siteConfig.contact.email}>{siteConfig.contact.email}</a><a className="block hover:text-ink" href={siteConfig.contact.phoneLink}>{siteConfig.contact.phone}</a><p>{siteConfig.contact.address.street}<br />{siteConfig.contact.address.city}, {siteConfig.contact.address.region} {siteConfig.contact.address.postalCode}</p></div></div>
+    <form className="rounded-2xl border border-hairline bg-surface/70 p-6 sm:p-8" action={'mailto:' + siteConfig.contact.email} method="post" encType="text/plain"><div className="grid gap-5 sm:grid-cols-2"><label className="text-ink-muted text-sm">Name<input required name="name" className="text-ink mt-2 h-12 w-full rounded-xl border border-hairline bg-white/[0.04] px-4 outline-none focus:border-brand" /></label><label className="text-ink-muted text-sm">Work email<input required type="email" name="email" className="text-ink mt-2 h-12 w-full rounded-xl border border-hairline bg-white/[0.04] px-4 outline-none focus:border-brand" /></label></div><label className="text-ink-muted mt-5 block text-sm">Service of interest<select name="service" className="text-ink mt-2 h-12 w-full rounded-xl border border-hairline bg-white/[0.04] px-4 outline-none focus:border-brand"><option>Cloud consulting</option><option>DevOps and CI/CD</option><option>Migration and data center solutions</option><option>Managed ERP and SAP services</option><option>Application optimization</option><option>Proactive support</option></select></label><label className="text-ink-muted mt-5 block text-sm">How can we help?<textarea required name="message" rows={5} className="text-ink mt-2 w-full resize-y rounded-xl border border-hairline bg-white/[0.04] px-4 py-3 outline-none focus:border-brand" /></label><button type="submit" className="mt-6 h-12 rounded-pill bg-brand-gradient px-6 font-semibold text-[#12161f]">Request a consultation</button><p className="text-ink-faint mt-4 text-xs">Tell us enough to route your enquiry well. We will use your message to follow up about the right next conversation.</p></form>
+  </div></Container>
 }

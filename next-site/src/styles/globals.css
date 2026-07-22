@@ -249,3 +249,5 @@
     top: 1rem;
   }
 }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+@media (max-width: 767px) { .aurora-motion, .hero-motion, .hero-detail-motion, .animate-marquee { animation: none !important; } .hero-detail-motion { display: none; } }

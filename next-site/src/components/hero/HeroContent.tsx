@@ -20,7 +20,7 @@ export function HeroContent() {
 
   return (
     <motion.div
-      className="relative z-10 max-w-2xl"
+      className="relative z-10 max-w-2xl pt-2 sm:pt-0"
       variants={container}
       initial="hidden"
       animate="show"
@@ -34,8 +34,8 @@ export function HeroContent() {
 
       <motion.h1
         variants={item}
-        className="text-ink mt-6 leading-[1.08] font-bold tracking-tight"
-        style={{ fontSize: 'clamp(2.5rem, 2.6vw + 1rem, 4.25rem)' }}
+        className="text-ink mt-5 leading-[1.05] sm:mt-6 font-bold tracking-tight"
+        style={{ fontSize: 'clamp(2.25rem, 2.6vw + 1rem, 4.25rem)' }}
       >
         {headline.lead}{' '}
         <span
@@ -49,12 +49,12 @@ export function HeroContent() {
 
       <motion.p
         variants={item}
-        className="text-ink-muted mt-6 max-w-[520px] text-[17px] leading-[1.7] sm:text-lg"
+        className="text-ink-muted mt-5 max-w-[520px] text-[15px] leading-[1.6] sm:mt-6 sm:text-lg sm:leading-[1.7]"
       >
         {description}
       </motion.p>
 
-      <motion.div variants={item} className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+      <motion.div variants={item} className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-4">
         <Link
           href={ctas.primary.to}
           className="group focus-visible:ring-brand focus-visible:ring-offset-canvas relative inline-flex h-14 items-center justify-between gap-4 rounded-pill bg-brand-gradient pr-2 pl-6 text-[15px] font-semibold text-[#12161F] transition duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
@@ -99,3 +99,4 @@ export function HeroContent() {
     </motion.div>
   )
 }
+

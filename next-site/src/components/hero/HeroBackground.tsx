@@ -110,7 +110,7 @@ export function HeroBackground({ sectionRef }: Props) {
       {/* 3b — Central cyan bloom */}
       <div
         aria-hidden="true"
-        className="animate-pulse-glow pointer-events-none absolute -z-[18] rounded-full"
+        className="hero-motion animate-pulse-glow pointer-events-none absolute -z-[18] rounded-full"
         style={{
           top: '18%',
           right: '6%',
@@ -123,7 +123,7 @@ export function HeroBackground({ sectionRef }: Props) {
       />
 
       {/* 4 — Aurora streaks */}
-      <div aria-hidden="true" className="-z-[17] absolute inset-0 overflow-hidden">
+      <div aria-hidden="true" className="hero-motion -z-[17] absolute inset-0 overflow-hidden">
         <div
           className="absolute -top-[8%] -left-[15%] h-[46%] w-[130%] rounded-full mix-blend-screen"
           style={{
@@ -154,7 +154,7 @@ export function HeroBackground({ sectionRef }: Props) {
       </div>
 
       {/* 5 — Floating blobs, particles, noise, vignette */}
-      <div aria-hidden="true" className="-z-[16] absolute inset-0 overflow-hidden">
+      <div aria-hidden="true" className="hero-detail-motion -z-[16] absolute inset-0 overflow-hidden">
         {BLOBS.map((sh, i) => (
           <div
             key={i}
@@ -294,3 +294,5 @@ export function HeroBackground({ sectionRef }: Props) {
     </>
   )
 }
+
+

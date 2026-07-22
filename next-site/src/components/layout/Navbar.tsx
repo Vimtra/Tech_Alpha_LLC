@@ -148,7 +148,7 @@ export function Navbar() {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
             onClick={() => setIsMenuOpen((open) => !open)}
-            className="text-ink flex h-11 w-11 shrink-0 items-center justify-center rounded-pill border border-hairline bg-white/[0.04] transition duration-300 hover:border-brand/40 hover:bg-white/[0.08] lg:hidden"
+            className="text-ink relative z-10 flex h-11 min-h-11 w-11 min-w-11 shrink-0 items-center justify-center rounded-pill border border-hairline bg-white/[0.08] shadow-[0_8px_24px_rgba(0,0,0,0.2)] transition duration-300 hover:border-brand/40 hover:bg-white/[0.12] lg:hidden"
           >
             <span className="relative h-5 w-5">
               <span
@@ -237,3 +237,4 @@ export function Navbar() {
     </header>
   )
 }
+

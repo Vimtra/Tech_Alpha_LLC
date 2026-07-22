@@ -64,7 +64,7 @@ export function IndustriesClients() {
             background: 'linear-gradient(-90deg, var(--color-canvas), transparent)',
           }}
         />
-        <div className="animate-marquee flex w-max items-center gap-14 whitespace-nowrap will-change-transform">
+        <div className="animate-marquee motion-reduce:animate-none flex w-max items-center gap-14 whitespace-nowrap will-change-transform">
           {marqueeLoop.map((item, i) => (
             <span
               key={i}
@@ -147,3 +147,4 @@ export function IndustriesClients() {
     </section>
   )
 }
+

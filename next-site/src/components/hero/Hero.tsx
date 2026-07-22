@@ -22,7 +22,7 @@ export function Hero() {
       style={{
         marginTop: `-${NAV_OVERLAP}px`,
         paddingTop: `${NAV_OVERLAP}px`,
-        minHeight: `calc(clamp(560px, 85vh, 960px) + ${NAV_OVERLAP}px)`,
+        minHeight: `calc(clamp(500px, 72vh, 780px) + ${NAV_OVERLAP}px)`,
       }}
       aria-label="Hero — Tech Alpha LLC"
     >
@@ -35,3 +35,4 @@ export function Hero() {
     </section>
   )
 }
+

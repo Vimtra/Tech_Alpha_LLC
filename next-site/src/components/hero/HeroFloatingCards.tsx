@@ -19,8 +19,8 @@ const CARDS: readonly FloatingCard[] = [
     Icon: Cloud,
     title: 'Cloud Strategy',
     subtitle: 'Assessment · Design · Prototype',
-    top: '22%',
-    right: '4%',
+    top: '18%',
+    right: '6%',
     width: '240px',
     dur: 11,
     delay: 0.2,
@@ -29,8 +29,8 @@ const CARDS: readonly FloatingCard[] = [
     Icon: GitBranch,
     title: 'DevOps & CI/CD',
     subtitle: 'Pipelines · AWS · Azure',
-    top: '40%',
-    right: '24%',
+    top: '38%',
+    right: '20%',
     width: '230px',
     dur: 13.5,
     delay: 1.4,
@@ -39,8 +39,8 @@ const CARDS: readonly FloatingCard[] = [
     Icon: HardDrive,
     title: 'IDC Migration',
     subtitle: 'Data Center · Hybrid Cloud',
-    top: '62%',
-    right: '3%',
+    top: '60%',
+    right: '6%',
     width: '230px',
     dur: 12,
     delay: 0.8,
@@ -49,7 +49,7 @@ const CARDS: readonly FloatingCard[] = [
     Icon: Wrench,
     title: 'Managed ERP · SAP',
     subtitle: 'App Services · Optimization',
-    top: '82%',
+    top: '78%',
     right: '22%',
     width: '240px',
     dur: 10.5,
@@ -75,11 +75,11 @@ export function HeroFloatingCards() {
               delay: 0.4 + i * 0.18,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="absolute"
+            className="absolute max-w-[205px] xl:max-w-[230px]"
             style={{ top: card.top, right: card.right, width: card.width }}
           >
             <div
-              className="animate-float rounded-2xl p-4"
+              className="hero-motion animate-float rounded-2xl p-4"
               style={{
                 background: 'rgba(9, 16, 35, 0.55)',
                 backdropFilter: 'blur(20px) saturate(140%)',
@@ -116,3 +116,5 @@ export function HeroFloatingCards() {
     </div>
   )
 }
+
+

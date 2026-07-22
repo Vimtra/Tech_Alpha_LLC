@@ -33,7 +33,7 @@ export function ClientsMarquee() {
           className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 sm:w-40"
           style={{ background: 'linear-gradient(-90deg, var(--color-canvas), transparent)' }}
         />
-        <div className="animate-marquee flex w-max items-center gap-14 whitespace-nowrap will-change-transform">
+        <div className="animate-marquee motion-reduce:animate-none flex w-max items-center gap-14 whitespace-nowrap will-change-transform">
           {loop.map((client, i) => (
             <span
               key={`${client.name}-${i}`}
@@ -50,3 +50,4 @@ export function ClientsMarquee() {
     </section>
   )
 }
+

@@ -20,11 +20,11 @@ export function AuroraBackground() {
       />
 
       {/* Drifting amber + blue blobs, larger and warmer */}
-      <div className="animate-aurora-drift absolute -top-[15%] -left-[10%] h-[60vw] w-[60vw] rounded-full bg-brand/25 blur-[120px]" />
-      <div className="animate-aurora-drift-slow absolute -top-[10%] -right-[12%] h-[55vw] w-[55vw] rounded-full bg-aurora-blue/25 blur-[130px]" />
-      <div className="animate-aurora-drift absolute top-[40%] left-1/3 h-[50vw] w-[50vw] rounded-full bg-aurora-cyan/15 blur-[140px]" />
-      <div className="animate-aurora-drift-slow absolute -bottom-[10%] left-[10%] h-[50vw] w-[50vw] rounded-full bg-aurora-blue/20 blur-[140px]" />
-      <div className="animate-aurora-drift absolute -bottom-[15%] right-[5%] h-[45vw] w-[45vw] rounded-full bg-brand/15 blur-[130px]" />
+      <div className="aurora-motion animate-aurora-drift absolute -top-[15%] -left-[10%] h-[60vw] w-[60vw] rounded-full bg-brand/25 blur-[120px]" />
+      <div className="aurora-motion animate-aurora-drift-slow absolute -top-[10%] -right-[12%] h-[55vw] w-[55vw] rounded-full bg-aurora-blue/25 blur-[130px]" />
+      <div className="aurora-motion animate-aurora-drift absolute top-[40%] left-1/3 h-[50vw] w-[50vw] rounded-full bg-aurora-cyan/15 blur-[140px]" />
+      <div className="aurora-motion animate-aurora-drift-slow absolute -bottom-[10%] left-[10%] h-[50vw] w-[50vw] rounded-full bg-aurora-blue/20 blur-[140px]" />
+      <div className="aurora-motion animate-aurora-drift absolute -bottom-[15%] right-[5%] h-[45vw] w-[45vw] rounded-full bg-brand/15 blur-[130px]" />
 
       {/* Fine engineering grid */}
       <div className="bg-grid-overlay absolute inset-0" />
@@ -40,3 +40,4 @@ export function AuroraBackground() {
     </div>
   )
 }
+
