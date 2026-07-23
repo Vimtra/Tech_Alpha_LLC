@@ -17,7 +17,7 @@ export const clients: readonly Client[] = [
   },
   {
     name: 'Genentech',
-    logo: '/clients/img-2.jpg',
+    logo: '/clients/img-2.png',
     industry: 'Biotechnology',
     service: 'Data Center Solutions',
     description:
@@ -25,7 +25,7 @@ export const clients: readonly Client[] = [
   },
   {
     name: 'Blue Cross Blue Shield',
-    logo: '/clients/img-3.jpg',
+    logo: '/clients/img-3.png',
     industry: 'Healthcare',
     service: 'Quality Assurance',
     description:
@@ -33,7 +33,7 @@ export const clients: readonly Client[] = [
   },
   {
     name: 'Airbnb',
-    logo: '/clients/img-4.jpg',
+    logo: '/clients/img-4.png',
     industry: 'Hospitality',
     service: 'Application Development',
     description:
@@ -41,7 +41,7 @@ export const clients: readonly Client[] = [
   },
   {
     name: 'S&P Global',
-    logo: '/clients/img-5.jpg',
+    logo: '/clients/img-5.png',
     industry: 'Financial Publishing',
     service: 'Business Analysis',
     description:
@@ -49,7 +49,7 @@ export const clients: readonly Client[] = [
   },
   {
     name: 'Toyota Motor Corporation',
-    logo: '/clients/img-6.jpg',
+    logo: '/clients/img-6.png',
     industry: 'Automotive',
     service: 'DevOps - CI/CD',
     description:
@@ -57,7 +57,7 @@ export const clients: readonly Client[] = [
   },
   {
     name: 'Virgin Atlantic',
-    logo: '/clients/img-7.jpg',
+    logo: '/clients/img-7.png',
     industry: 'Aviation',
     service: 'Application Microservices',
     description:
