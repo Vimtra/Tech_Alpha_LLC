@@ -26,7 +26,7 @@ export function IndustriesClients() {
   const marqueeLoop = [...marqueeItems, ...marqueeItems]
 
   return (
-    <section aria-label="Industries and clients" className="relative py-[140px]">
+    <section aria-label="Industries and clients" className="relative py-24 sm:py-32 lg:py-40">
       <Container size="wide" className="max-w-[1440px]">
         <div className="max-w-3xl">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>

@@ -29,10 +29,7 @@ export function Footer() {
               height={40}
               className="h-9 w-auto"
             />
-            <p className="max-w-xs text-sm leading-6 text-ink-muted">
-              Tech Alpha LLC is a DevOps and cloud computing consulting company delivering assessment, design,
-              strategy, migration, and 24/7 proactive support from McKinney, TX.
-            </p>
+            <p className="max-w-xs text-sm leading-6 text-ink-muted">{siteConfig.description}</p>
             <form
               className="mt-6 flex max-w-xs items-center gap-2"
               action={`mailto:${contact.email}?subject=Newsletter%20signup`}

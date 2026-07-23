@@ -2,12 +2,13 @@ import { Container } from '@/components/ui/Container'
 import { GradientHeading } from '@/components/home/GradientHeading'
 import { SectionEyebrow } from '@/components/home/SectionEyebrow'
 import { companyStory } from '@/content/about'
+import { glassCardStyle } from '@/lib/theme'
 
 export function CompanyStory() {
   const { eyebrow, headline, leadParagraph, bodyParagraphs, pullQuote } = companyStory
 
   return (
-    <section aria-label="Company story" className="relative py-[120px]">
+    <section aria-label="Company story" className="relative py-24 sm:py-32 lg:py-40">
       <Container className="max-w-3xl">
         <SectionEyebrow>{eyebrow}</SectionEyebrow>
         <GradientHeading
@@ -40,14 +41,11 @@ export function CompanyStory() {
         {/* Pull quote break */}
         <figure
           className="relative my-16 rounded-3xl px-8 py-10 sm:px-12 sm:py-12"
-          style={{
-            background:
-              'linear-gradient(rgba(9,16,35,0.35), rgba(9,16,35,0.35)) padding-box, ' +
-              'linear-gradient(135deg, rgba(120,170,255,0.30) 0%, rgba(248,151,35,0.14) 100%) border-box',
-            border: '1px solid transparent',
-            backdropFilter: 'blur(20px) saturate(140%)',
-            WebkitBackdropFilter: 'blur(20px) saturate(140%)',
-          }}
+          style={glassCardStyle({
+            borderGradient:
+              'linear-gradient(135deg, rgba(120,170,255,0.30) 0%, rgba(248,151,35,0.14) 100%)',
+            blur: 20,
+          })}
         >
           <div
             aria-hidden="true"

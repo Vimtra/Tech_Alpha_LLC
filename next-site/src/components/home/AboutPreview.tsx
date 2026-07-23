@@ -1,6 +1,7 @@
 import { Check } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { aboutPreview } from '@/content/home'
+import { glassCardStyle } from '@/lib/theme'
 import { GradientHeading } from './GradientHeading'
 import { SectionEyebrow } from './SectionEyebrow'
 
@@ -36,12 +37,11 @@ export function AboutPreview() {
           <aside
             className="relative overflow-hidden rounded-[28px] p-8 sm:p-10"
             style={{
-              background:
-                'linear-gradient(rgba(9,16,35,0.35), rgba(9,16,35,0.35)) padding-box, ' +
-                'linear-gradient(135deg, rgba(120,170,255,0.28) 0%, rgba(120,170,255,0.06) 55%, rgba(248,151,35,0.10) 100%) border-box',
-              border: '1px solid transparent',
-              backdropFilter: 'blur(20px) saturate(140%)',
-              WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+              ...glassCardStyle({
+                borderGradient:
+                  'linear-gradient(135deg, rgba(120,170,255,0.28) 0%, rgba(120,170,255,0.06) 55%, rgba(248,151,35,0.10) 100%)',
+                blur: 20,
+              }),
               boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 20px 60px rgba(0,0,0,0.25)',
             }}
           >

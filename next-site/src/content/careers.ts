@@ -177,4 +177,8 @@ export const careersPage = {
     procedure:
       'Refer candidates to any open position by contacting HR directly. If the referred candidate is offered and accepts, HR will contact the referring employee. Upon meeting the requirements, the employee applies with HR for the referral fee.',
   },
+  generalApplication: {
+    prompt: "Don't see a fit? We accept general applications.",
+    ctaLabel: 'Send your resume',
+  },
 } as const

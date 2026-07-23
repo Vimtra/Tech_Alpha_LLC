@@ -40,7 +40,7 @@ export default function ServicesPage() {
     <>
       <ServicesHero />
 
-      <section aria-label="Enterprise services detail" className="relative py-16 sm:py-24">
+      <section aria-label="Enterprise services detail" className="relative py-16 sm:py-24 lg:py-28">
         <Container size="wide" className="max-w-[1440px]">
           <div className="grid gap-12 lg:grid-cols-[0.28fr_0.72fr] lg:gap-16">
             <ServicesSideNav />

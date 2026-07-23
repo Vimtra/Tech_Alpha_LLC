@@ -6,6 +6,7 @@ import { AlertCircle, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { submitContactForm, type ContactFormState } from '@/app/actions/contact'
 import { servicesFullDetail } from '@/content/services'
 import { cn } from '@/lib/cn'
+import { glassCardStyle } from '@/lib/theme'
 
 const initialState: ContactFormState = { status: 'idle' }
 
@@ -121,14 +122,12 @@ export function ContactForm() {
         role="status"
         aria-live="polite"
         className="relative overflow-hidden rounded-[28px] p-10 text-center"
-        style={{
-          background:
-            'linear-gradient(rgba(9,16,35,0.55), rgba(9,16,35,0.55)) padding-box, ' +
-            'linear-gradient(135deg, rgba(120,170,255,0.35), rgba(248,151,35,0.22)) border-box',
-          border: '1px solid transparent',
-          backdropFilter: 'blur(22px) saturate(140%)',
-          WebkitBackdropFilter: 'blur(22px) saturate(140%)',
-        }}
+        style={glassCardStyle({
+          opacity: 0.55,
+          borderGradient:
+            'linear-gradient(135deg, rgba(120,170,255,0.35), rgba(248,151,35,0.22))',
+          blur: 22,
+        })}
       >
         <div className="text-brand-soft mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-brand/40 bg-brand/10">
           <CheckCircle2 className="h-7 w-7" strokeWidth={1.75} />
@@ -146,14 +145,11 @@ export function ContactForm() {
       action={formAction}
       noValidate
       className="relative overflow-hidden rounded-[28px] p-8 sm:p-10"
-      style={{
-        background:
-          'linear-gradient(rgba(9,16,35,0.35), rgba(9,16,35,0.35)) padding-box, ' +
-          'linear-gradient(135deg, rgba(120,170,255,0.28), rgba(120,170,255,0.06) 55%, rgba(248,151,35,0.10)) border-box',
-        border: '1px solid transparent',
-        backdropFilter: 'blur(22px) saturate(140%)',
-        WebkitBackdropFilter: 'blur(22px) saturate(140%)',
-      }}
+      style={glassCardStyle({
+        borderGradient:
+          'linear-gradient(135deg, rgba(120,170,255,0.28), rgba(120,170,255,0.06) 55%, rgba(248,151,35,0.10))',
+        blur: 22,
+      })}
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <Field name="name" label="Name" required autoComplete="name" error={errs.name} />

@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { SectionEyebrow } from '@/components/home/SectionEyebrow'
-
-const AMBER_GRADIENT = 'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)'
+import { AMBER_GRADIENT } from '@/lib/theme'
 
 export function ClientsHero() {
   return (

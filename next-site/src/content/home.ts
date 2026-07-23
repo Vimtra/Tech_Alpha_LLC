@@ -16,6 +16,62 @@ export const heroContent = {
   },
 } as const
 
+export type HeroFloatingIconName = 'cloud' | 'gitBranch' | 'hardDrive' | 'wrench'
+
+export type HeroFloatingCard = {
+  iconName: HeroFloatingIconName
+  title: string
+  subtitle: string
+  top: string
+  right: string
+  width: string
+  dur: number
+  delay: number
+}
+
+export const heroFloatingCards: readonly HeroFloatingCard[] = [
+  {
+    iconName: 'cloud',
+    title: 'Cloud Strategy',
+    subtitle: 'Assessment · Design · Prototype',
+    top: '18%',
+    right: '6%',
+    width: '240px',
+    dur: 11,
+    delay: 0.2,
+  },
+  {
+    iconName: 'gitBranch',
+    title: 'DevOps & CI/CD',
+    subtitle: 'Pipelines · AWS · Azure',
+    top: '38%',
+    right: '20%',
+    width: '230px',
+    dur: 13.5,
+    delay: 1.4,
+  },
+  {
+    iconName: 'hardDrive',
+    title: 'IDC Migration',
+    subtitle: 'Data Center · Hybrid Cloud',
+    top: '60%',
+    right: '6%',
+    width: '230px',
+    dur: 12,
+    delay: 0.8,
+  },
+  {
+    iconName: 'wrench',
+    title: 'Managed ERP · SAP',
+    subtitle: 'App Services · Optimization',
+    top: '78%',
+    right: '22%',
+    width: '240px',
+    dur: 10.5,
+    delay: 2,
+  },
+] as const
+
 export const aboutPreview = {
   eyebrow: 'About Tech Alpha',
   headline: {

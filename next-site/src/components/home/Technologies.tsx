@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { technologies } from '@/content/home'
+import { glassCardStyle } from '@/lib/theme'
 import { GradientHeading } from './GradientHeading'
 import { SectionEyebrow } from './SectionEyebrow'
 
@@ -49,12 +50,11 @@ export function Technologies() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative mx-auto mt-16 max-w-[1200px] overflow-hidden rounded-[28px] p-6 sm:mt-20 sm:p-10"
           style={{
-            background:
-              'linear-gradient(rgba(9,16,35,0.35), rgba(9,16,35,0.35)) padding-box, ' +
-              'linear-gradient(135deg, rgba(120,170,255,0.30) 0%, rgba(120,170,255,0.06) 55%, rgba(248,151,35,0.12) 100%) border-box',
-            border: '1px solid transparent',
-            backdropFilter: 'blur(22px) saturate(140%)',
-            WebkitBackdropFilter: 'blur(22px) saturate(140%)',
+            ...glassCardStyle({
+              borderGradient:
+                'linear-gradient(135deg, rgba(120,170,255,0.30) 0%, rgba(120,170,255,0.06) 55%, rgba(248,151,35,0.12) 100%)',
+              blur: 22,
+            }),
             boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 20px 60px rgba(0,0,0,0.25)',
           }}
         >
@@ -67,17 +67,20 @@ export function Technologies() {
                 'radial-gradient(ellipse 60% 100% at 80% 50%, rgba(248,151,35,0.10) 0%, transparent 70%)',
             }}
           />
-          <div className="relative z-10 grid gap-8 md:grid-cols-2 lg:grid-cols-5 lg:gap-6 lg:divide-x lg:divide-white/[0.06]">
+          <div className="relative z-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
             {groups.map((group) => {
               const Icon = ICONS[group.iconName] ?? Box
               return (
-                <div key={group.label} className="min-w-0 lg:px-5 lg:first:pl-0 lg:last:pr-0">
+                <div
+                  key={group.label}
+                  className="space-y-5 rounded-[28px] border border-white/10 bg-white/5 p-6 sm:p-7"
+                >
                   <div className="flex items-center gap-3">
                     <div
-                      className="flex h-9 w-9 items-center justify-center rounded-lg"
+                      className="flex h-10 w-10 items-center justify-center rounded-2xl"
                       style={{
-                        background: 'rgba(255,255,255,0.05)',
-                        border: '1px solid rgba(120,170,255,0.18)',
+                        background: 'rgba(255,255,255,0.07)',
+                        border: '1px solid rgba(120,170,255,0.20)',
                       }}
                     >
                       <Icon
@@ -86,20 +89,21 @@ export function Technologies() {
                         aria-hidden="true"
                       />
                     </div>
-                    <p className="text-brand-soft font-mono text-[10px] tracking-[0.24em] uppercase">
+                    <p className="text-brand-soft font-mono text-[10px] tracking-[0.28em] uppercase">
                       {group.label}
                     </p>
                   </div>
-                  <ul className="mt-4 flex flex-wrap gap-2">
+
+                  <div className="grid gap-2 sm:grid-cols-2">
                     {group.items.map((item) => (
-                      <li
+                      <div
                         key={item}
-                        className="text-ink rounded-full border border-hairline bg-white/[0.03] px-3 py-1 text-xs font-medium"
+                        className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-ink"
                       >
                         {item}
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               )
             })}

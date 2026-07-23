@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { stats } from '@/content/about'
+import { AMBER_GRADIENT, glassCardStyle } from '@/lib/theme'
 
 export function StatsStrip() {
   return (
@@ -11,12 +12,11 @@ export function StatsStrip() {
         <div
           className="relative overflow-hidden rounded-[24px] px-6 py-14 sm:px-10"
           style={{
-            background:
-              'linear-gradient(rgba(9,16,35,0.35), rgba(9,16,35,0.35)) padding-box, ' +
-              'linear-gradient(135deg, rgba(120,170,255,0.30) 0%, rgba(120,170,255,0.05) 55%, rgba(248,151,35,0.15) 100%) border-box',
-            border: '1px solid transparent',
-            backdropFilter: 'blur(22px) saturate(140%)',
-            WebkitBackdropFilter: 'blur(22px) saturate(140%)',
+            ...glassCardStyle({
+              borderGradient:
+                'linear-gradient(135deg, rgba(120,170,255,0.30) 0%, rgba(120,170,255,0.05) 55%, rgba(248,151,35,0.15) 100%)',
+              blur: 22,
+            }),
             boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 20px 60px rgba(0,0,0,0.25)',
           }}
         >
@@ -44,7 +44,7 @@ export function StatsStrip() {
                   className="bg-clip-text font-bold tracking-tight text-transparent"
                   style={{
                     backgroundImage:
-                      'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)',
+                      AMBER_GRADIENT,
                     fontSize: 'clamp(2.75rem, 4.2vw + 1rem, 5rem)',
                     lineHeight: 1,
                   }}

@@ -1,6 +1,7 @@
 import { Container } from '@/components/ui/Container'
 import { SectionEyebrow } from '@/components/home/SectionEyebrow'
 import { aboutHero } from '@/content/about'
+import { AMBER_GRADIENT } from '@/lib/theme'
 
 export function AboutHero() {
   const { eyebrow, headline, description, callout } = aboutHero
@@ -8,7 +9,7 @@ export function AboutHero() {
   return (
     <section
       aria-label="About Tech Alpha — introduction"
-      className="relative pt-[180px] pb-[100px]"
+      className="relative pt-[160px] pb-16"
     >
       <Container size="wide" className="max-w-[1440px]">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_0.6fr] lg:items-end lg:gap-20">
@@ -24,7 +25,7 @@ export function AboutHero() {
                 className="bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
-                    'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)',
+                    AMBER_GRADIENT,
                 }}
               >
                 {headline.accent}

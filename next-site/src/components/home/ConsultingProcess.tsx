@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { consultingProcess } from '@/content/home'
+import { AMBER_GRADIENT } from '@/lib/theme'
 import { GradientHeading } from './GradientHeading'
 import { SectionEyebrow } from './SectionEyebrow'
 
@@ -70,7 +71,7 @@ export function ConsultingProcess() {
                       className="bg-clip-text text-transparent"
                       style={{
                         backgroundImage:
-                          'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)',
+                          AMBER_GRADIENT,
                       }}
                     >
                       {step.number}

@@ -1,13 +1,10 @@
+import { glassCardStyle } from '@/lib/theme'
+
 export function ContactMap() {
   return (
     <div
       className="relative overflow-hidden rounded-[28px]"
-      style={{
-        background:
-          'linear-gradient(rgba(9,16,35,0.35), rgba(9,16,35,0.35)) padding-box, ' +
-          'linear-gradient(135deg, rgba(120,170,255,0.24), rgba(120,170,255,0.05)) border-box',
-        border: '1px solid transparent',
-      }}
+      style={{ background: glassCardStyle().background, border: '1px solid transparent' }}
     >
       <iframe
         title="Tech Alpha LLC office — McKinney, Texas"

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { whyChooseUs } from '@/content/home'
+import { AMBER_GRADIENT } from '@/lib/theme'
 import { GradientHeading } from './GradientHeading'
 import { SectionEyebrow } from './SectionEyebrow'
 
@@ -66,7 +67,7 @@ export function WhyChooseUs() {
                       className="bg-clip-text font-mono text-sm font-bold tracking-tight text-transparent"
                       style={{
                         backgroundImage:
-                          'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)',
+                          AMBER_GRADIENT,
                       }}
                     >
                       0{i + 1}

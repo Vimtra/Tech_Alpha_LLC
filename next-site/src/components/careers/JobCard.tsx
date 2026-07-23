@@ -1,19 +1,13 @@
 import Link from 'next/link'
 import { ArrowUpRight, Briefcase, MapPin } from 'lucide-react'
 import type { Job } from '@/content/careers'
+import { glassCardStyle } from '@/lib/theme'
 
 export function JobCard({ job }: { job: Job }) {
   return (
     <article
       className="group relative overflow-hidden rounded-2xl p-7"
-      style={{
-        background:
-          'linear-gradient(rgba(9,16,35,0.35), rgba(9,16,35,0.35)) padding-box, ' +
-          'linear-gradient(135deg, rgba(120,170,255,0.24), rgba(120,170,255,0.05)) border-box',
-        border: '1px solid transparent',
-        backdropFilter: 'blur(18px) saturate(140%)',
-        WebkitBackdropFilter: 'blur(18px) saturate(140%)',
-      }}
+      style={glassCardStyle()}
     >
       <div className="flex items-baseline justify-between gap-4">
         <p className="text-brand-soft font-mono text-[10px] tracking-[0.24em] uppercase">

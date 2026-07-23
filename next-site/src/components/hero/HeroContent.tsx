@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
 import { ArrowRight, Play } from 'lucide-react'
 import { heroContent } from '@/content/home'
+import { AMBER_GRADIENT } from '@/lib/theme'
 
 const container: Variants = {
   hidden: { opacity: 1 },
@@ -40,7 +41,7 @@ export function HeroContent() {
         {headline.lead}{' '}
         <span
           className="bg-clip-text text-transparent"
-          style={{ backgroundImage: 'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)' }}
+          style={{ backgroundImage: AMBER_GRADIENT }}
         >
           {headline.accent}
         </span>

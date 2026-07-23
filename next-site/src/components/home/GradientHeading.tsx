@@ -1,4 +1,5 @@
 import { cn } from '@/lib/cn'
+import { AMBER_GRADIENT } from '@/lib/theme'
 
 type HeadingLevel = 'h1' | 'h2' | 'h3'
 
@@ -24,7 +25,7 @@ export function GradientHeading({ lead, accent, tail, as = 'h2', className }: Pr
       <span
         className="bg-clip-text text-transparent"
         style={{
-          backgroundImage: 'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)',
+          backgroundImage: AMBER_GRADIENT,
         }}
       >
         {accent}

@@ -9,6 +9,7 @@ import { siteConfig } from '@/constants/siteConfig'
 import { careersPage, jobs } from '@/content/careers'
 import { breadcrumbJsonLd, itemListJsonLd } from '@/lib/jsonld'
 import { buildMetadata } from '@/lib/seo'
+import { AMBER_GRADIENT } from '@/lib/theme'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Careers',
@@ -66,7 +67,7 @@ export default function CareersPage() {
       </section>
 
       {/* Culture */}
-      <section aria-label="Culture" className="relative py-24 sm:py-32">
+      <section aria-label="Culture" className="relative py-24 sm:py-32 lg:py-40">
         <Container size="wide" className="max-w-[1440px]">
           <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <div className="lg:sticky lg:top-32 lg:h-fit">
@@ -97,7 +98,7 @@ export default function CareersPage() {
                     className="bg-clip-text font-mono text-sm font-bold tracking-tight text-transparent"
                     style={{
                       backgroundImage:
-                        'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)',
+                        AMBER_GRADIENT,
                     }}
                   >
                     0{i + 1}
@@ -171,9 +172,7 @@ export default function CareersPage() {
       <section aria-label="Apply" className="relative pb-24 sm:pb-32">
         <Container size="wide" className="max-w-[1440px]">
           <div className="text-center">
-            <p className="text-ink-muted text-sm">
-              Don&rsquo;t see a fit? We accept general applications.
-            </p>
+            <p className="text-ink-muted text-sm">{careersPage.generalApplication.prompt}</p>
             <a
               href={`mailto:${siteConfig.contact.email}?subject=General application`}
               className="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-brand-gradient px-6 text-sm font-semibold text-[#12161F]"
@@ -182,7 +181,7 @@ export default function CareersPage() {
               }}
             >
               <Mail className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
-              Send your resume
+              {careersPage.generalApplication.ctaLabel}
               <ArrowRight className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />
             </a>
           </div>

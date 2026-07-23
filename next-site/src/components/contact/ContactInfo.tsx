@@ -1,5 +1,6 @@
 import { Clock, Mail, MapPin, Phone, type LucideIcon } from 'lucide-react'
 import { siteConfig } from '@/constants/siteConfig'
+import { glassCardStyle } from '@/lib/theme'
 
 type Item = { Icon: LucideIcon; label: string; value: string; href?: string }
 
@@ -24,7 +25,7 @@ const items: readonly Item[] = [
   {
     Icon: Clock,
     label: 'Hours',
-    value: 'Mon–Fri · 9:00 AM – 6:00 PM CT · 24/7 support for active engagements',
+    value: siteConfig.contact.hours,
   },
 ]
 
@@ -32,14 +33,11 @@ export function ContactInfo() {
   return (
     <div
       className="relative overflow-hidden rounded-[28px] p-8 sm:p-10"
-      style={{
-        background:
-          'linear-gradient(rgba(9,16,35,0.35), rgba(9,16,35,0.35)) padding-box, ' +
-          'linear-gradient(135deg, rgba(120,170,255,0.26), rgba(120,170,255,0.05) 55%, rgba(248,151,35,0.10)) border-box',
-        border: '1px solid transparent',
-        backdropFilter: 'blur(22px) saturate(140%)',
-        WebkitBackdropFilter: 'blur(22px) saturate(140%)',
-      }}
+      style={glassCardStyle({
+        borderGradient:
+          'linear-gradient(135deg, rgba(120,170,255,0.26), rgba(120,170,255,0.05) 55%, rgba(248,151,35,0.10))',
+        blur: 22,
+      })}
     >
       <p className="text-brand-soft font-mono text-[11px] tracking-[0.28em] uppercase">
         Get in touch

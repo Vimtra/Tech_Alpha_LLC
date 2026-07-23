@@ -1,6 +1,7 @@
 import { Container } from '@/components/ui/Container'
 import { SectionEyebrow } from '@/components/home/SectionEyebrow'
 import { servicesFullDetail, servicesPage } from '@/content/services'
+import { AMBER_GRADIENT } from '@/lib/theme'
 
 export function ServicesHero() {
   const { eyebrow, headline, description } = servicesPage
@@ -8,7 +9,7 @@ export function ServicesHero() {
   return (
     <section
       aria-label="Enterprise services — introduction"
-      className="relative pt-[180px] pb-[80px]"
+      className="relative pt-[160px] pb-16"
     >
       <Container size="wide" className="max-w-[1440px]">
         <div className="flex flex-col gap-6 md:flex-row md:items-baseline md:justify-between md:gap-10">
@@ -26,7 +27,7 @@ export function ServicesHero() {
           <span
             className="bg-clip-text text-transparent"
             style={{
-              backgroundImage: 'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)',
+              backgroundImage: AMBER_GRADIENT,
             }}
           >
             {headline.accent}

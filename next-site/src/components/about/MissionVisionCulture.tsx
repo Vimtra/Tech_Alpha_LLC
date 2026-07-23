@@ -6,6 +6,7 @@ import { Container } from '@/components/ui/Container'
 import { GradientHeading } from '@/components/home/GradientHeading'
 import { SectionEyebrow } from '@/components/home/SectionEyebrow'
 import { missionVisionCulture } from '@/content/about'
+import { AMBER_GRADIENT } from '@/lib/theme'
 
 const ICONS: Record<string, LucideIcon> = {
   target: Target,
@@ -17,7 +18,7 @@ export function MissionVisionCulture() {
   const { eyebrow, headline, items } = missionVisionCulture
 
   return (
-    <section aria-label="Mission, vision, and culture" className="relative py-[140px]">
+    <section aria-label="Mission, vision, and culture" className="relative py-24 sm:py-32 lg:py-40">
       <Container size="wide" className="max-w-[1440px]">
         <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           {/* Sticky header column */}
@@ -81,7 +82,7 @@ export function MissionVisionCulture() {
                         className="bg-clip-text font-mono text-sm font-bold tracking-tight text-transparent"
                         style={{
                           backgroundImage:
-                            'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)',
+                            AMBER_GRADIENT,
                         }}
                       >
                         0{i + 1}

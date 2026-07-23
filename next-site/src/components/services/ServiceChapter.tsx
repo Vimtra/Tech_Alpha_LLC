@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import type { ServiceDetail, FullServiceIconName } from '@/content/services'
+import { AMBER_GRADIENT } from '@/lib/theme'
 
 const ICONS: Record<FullServiceIconName, LucideIcon> = {
   workflow: Workflow,
@@ -73,7 +74,7 @@ export function ServiceChapter({ service, index }: { service: ServiceDetail; ind
               className="bg-clip-text font-mono font-bold tracking-tight text-transparent"
               style={{
                 backgroundImage:
-                  'linear-gradient(120deg, #F89723 0%, #FFD18A 55%, #FFB958 100%)',
+                  AMBER_GRADIENT,
                 fontSize: 'clamp(2.5rem, 3vw + 1rem, 4rem)',
                 lineHeight: 1,
               }}

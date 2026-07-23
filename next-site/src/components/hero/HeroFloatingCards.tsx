@@ -2,60 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { Cloud, GitBranch, HardDrive, Wrench, type LucideIcon } from 'lucide-react'
+import { heroFloatingCards, type HeroFloatingIconName } from '@/content/home'
 
-type FloatingCard = {
-  Icon: LucideIcon
-  title: string
-  subtitle: string
-  top: string
-  right: string
-  dur: number
-  delay: number
-  width: string
+const ICONS: Record<HeroFloatingIconName, LucideIcon> = {
+  cloud: Cloud,
+  gitBranch: GitBranch,
+  hardDrive: HardDrive,
+  wrench: Wrench,
 }
-
-const CARDS: readonly FloatingCard[] = [
-  {
-    Icon: Cloud,
-    title: 'Cloud Strategy',
-    subtitle: 'Assessment · Design · Prototype',
-    top: '18%',
-    right: '6%',
-    width: '240px',
-    dur: 11,
-    delay: 0.2,
-  },
-  {
-    Icon: GitBranch,
-    title: 'DevOps & CI/CD',
-    subtitle: 'Pipelines · AWS · Azure',
-    top: '38%',
-    right: '20%',
-    width: '230px',
-    dur: 13.5,
-    delay: 1.4,
-  },
-  {
-    Icon: HardDrive,
-    title: 'IDC Migration',
-    subtitle: 'Data Center · Hybrid Cloud',
-    top: '60%',
-    right: '6%',
-    width: '230px',
-    dur: 12,
-    delay: 0.8,
-  },
-  {
-    Icon: Wrench,
-    title: 'Managed ERP · SAP',
-    subtitle: 'App Services · Optimization',
-    top: '78%',
-    right: '22%',
-    width: '240px',
-    dur: 10.5,
-    delay: 2,
-  },
-]
 
 export function HeroFloatingCards() {
   return (
@@ -63,8 +17,8 @@ export function HeroFloatingCards() {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-[5] hidden lg:block"
     >
-      {CARDS.map((card, i) => {
-        const Icon = card.Icon
+      {heroFloatingCards.map((card, i) => {
+        const Icon = ICONS[card.iconName]
         return (
           <motion.div
             key={card.title}
@@ -116,5 +70,3 @@ export function HeroFloatingCards() {
     </div>
   )
 }
-
-
