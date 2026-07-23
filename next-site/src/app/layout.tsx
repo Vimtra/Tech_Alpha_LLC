@@ -22,10 +22,7 @@ export const metadata: Metadata = {
   publisher: siteConfig.legalName,
   formatDetection: { email: false, address: false, telephone: false },
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/logo-3.png', type: 'image/png' },
-    ],
+    icon: [{ url: '/favicon.png', type: 'image/png' }],
     apple: '/logo-3.png',
   },
 }
