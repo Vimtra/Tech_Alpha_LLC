@@ -24,7 +24,7 @@ const items: readonly Item[] = [
   },
   {
     Icon: Clock,
-    label: 'Hours',
+    label: 'Availability',
     value: siteConfig.contact.hours,
   },
 ]

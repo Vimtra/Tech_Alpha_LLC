@@ -1,5 +1,5 @@
 export const aboutHero = {
-  eyebrow: 'Since establishment · McKinney, Texas',
+  eyebrow: 'McKinney, Texas · DevOps & Cloud Consulting',
   headline: {
     lead: 'We engineer',
     accent: 'enterprise cloud',
@@ -20,10 +20,10 @@ export const aboutHero = {
 } as const
 
 export const stats = [
-  { value: '10+', label: 'Years of enterprise experience' },
-  { value: '50+', label: 'Enterprise clients served' },
   { value: '24/7', label: 'Proactive support & monitoring' },
-  { value: '100%', label: 'AWS-experienced engineering team' },
+  { value: '8', label: 'Enterprise client engagements' },
+  { value: '6', label: 'Core service disciplines' },
+  { value: '1', label: 'Dedicated consultant per engagement' },
 ] as const
 
 export const companyStory = {
@@ -78,7 +78,7 @@ export const industriesSection = {
   eyebrow: 'Cross-industry experience',
   headline: {
     lead: 'Trusted by enterprise',
-    accent: 'leaders across seven',
+    accent: 'leaders across eight',
     tail: ' industries.',
   },
   description:

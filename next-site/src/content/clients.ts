@@ -12,8 +12,7 @@ export const clients: readonly Client[] = [
     logo: '/clients/img-1.png',
     industry: 'Financial Services',
     service: 'Big Data & Analytics',
-    description:
-      'Big Data and analytics solutions supporting financial strategy and portfolio planning.',
+    description: 'Big Data and analytics solutions to help them plan their financial strategies.',
   },
   {
     name: 'Genentech',
@@ -21,15 +20,15 @@ export const clients: readonly Client[] = [
     industry: 'Biotechnology',
     service: 'Data Center Solutions',
     description:
-      'Data center architecture for the San Francisco-based Roche Group biotechnology company.',
+      'A member of the Roche Group, a biotechnology company based in San Francisco, CA — supported with Data Center Solutions.',
   },
   {
-    name: 'Blue Cross Blue Shield',
+    name: 'Blue Cross Blue Shield Association',
     logo: '/clients/img-3.png',
     industry: 'Healthcare',
     service: 'Quality Assurance',
     description:
-      'Quality assurance and automation for the federation of U.S. health insurance organizations.',
+      'A federation of 36 separate U.S. health insurance companies — supported with Quality Assurance Solutions.',
   },
   {
     name: 'Airbnb',
@@ -37,7 +36,7 @@ export const clients: readonly Client[] = [
     industry: 'Hospitality',
     service: 'Application Development',
     description:
-      'Application development and microservices delivery for the global hospitality marketplace.',
+      'An American vacation rental online marketplace based in San Francisco — assisted with Application Development.',
   },
   {
     name: 'S&P Global',
@@ -45,7 +44,7 @@ export const clients: readonly Client[] = [
     industry: 'Financial Publishing',
     service: 'Business Analysis',
     description:
-      'Business analysis services supporting the New York-headquartered publicly traded corporation.',
+      'An American publicly traded corporation headquartered in Manhattan, New York City — supported with Business Analysis.',
   },
   {
     name: 'Toyota Motor Corporation',
@@ -53,7 +52,7 @@ export const clients: readonly Client[] = [
     industry: 'Automotive',
     service: 'DevOps - CI/CD',
     description:
-      'DevOps, continuous integration, and continuous delivery services for the multinational automotive manufacturer.',
+      'A Japanese multinational automotive manufacturer — supported with DevOps, continuous integration, and continuous deployment services.',
   },
   {
     name: 'Virgin Atlantic',
@@ -61,7 +60,7 @@ export const clients: readonly Client[] = [
     industry: 'Aviation',
     service: 'Application Microservices',
     description:
-      'Application development and microservices for the British transatlantic airline.',
+      'A British airline headquartered in Crawley, England — delivered Application Development Microservices.',
   },
   {
     name: 'Walmart Inc.',
@@ -69,6 +68,6 @@ export const clients: readonly Client[] = [
     industry: 'Retail',
     service: 'Data Center - Cloud',
     description:
-      'Data center solutions engineered for cloud platforms across the multinational retailer.',
+      'An American multinational retail corporation headquartered in Bentonville, Arkansas — helped deploy Data Center Solutions for their cloud platforms.',
   },
 ] as const

@@ -133,7 +133,7 @@ export const whyChooseUs = {
       iconName: 'building',
       title: 'Cross-Industry Experience',
       description:
-        'Delivered across finance, biotechnology, healthcare, retail, aviation, hospitality, and automotive.',
+        'Delivered across financial services, biotechnology, healthcare, retail, aviation, hospitality, automotive, and financial publishing.',
     },
     {
       iconName: 'layers',
@@ -170,6 +170,11 @@ export const technologies = {
       items: ['Ansible', 'Chef', 'Puppet'],
     },
     {
+      label: 'Containerization',
+      iconName: 'layers',
+      items: ['Docker', 'Kubernetes', 'CoreOS', 'Apache Mesos'],
+    },
+    {
       label: 'Enterprise Apps',
       iconName: 'box',
       items: ['SAP', 'ERP Platforms'],
@@ -190,32 +195,32 @@ export const consultingProcess = {
     tail: '.',
   },
   description:
-    'Every engagement follows the same enterprise methodology — proven across finance, biotechnology, healthcare, and beyond.',
+    'Every engagement follows the same five-step methodology: assessment, design, strategy, planning, and prototype (PoC).',
   steps: [
     {
       number: '01',
-      title: 'Assess',
+      title: 'Assessment',
       description: 'Discover the current environment, constraints, and business goals.',
     },
     {
       number: '02',
       title: 'Design',
-      description: 'Architect the target state and cloud, DevOps, and integration strategy.',
+      description: 'Architect the target state across cloud, DevOps, and integration.',
     },
     {
       number: '03',
+      title: 'Strategy',
+      description: 'Define the cloud and DevOps strategy that gets you there.',
+    },
+    {
+      number: '04',
       title: 'Plan',
       description: 'Sequence migration, integration, and delivery workstreams.',
     },
     {
-      number: '04',
-      title: 'Deploy',
-      description: 'Hands-on migration, integration, and configuration across the stack.',
-    },
-    {
       number: '05',
-      title: 'Support',
-      description: '24/7 proactive monitoring, management, and continuous optimization.',
+      title: 'Prototype',
+      description: 'Proof of concept (PoC) before full deployment and 24/7 support.',
     },
   ],
 } as const

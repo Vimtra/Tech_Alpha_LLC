@@ -81,7 +81,8 @@ export const jobs: readonly Job[] = [
     title: 'Programmer Analyst',
     type: 'Full-time · 40 hours per week',
     employmentType: 'FULL_TIME',
-    salaryDisplay: 'Contact for details',
+    salaryDisplay: '$123,386 per year',
+    baseSalary: { currency: 'USD', value: 123386, unit: 'YEAR' },
     postingDate: '2025-03-14',
     openings: '5',
     location: OFFICE_ADDRESS,
@@ -98,7 +99,8 @@ export const jobs: readonly Job[] = [
     title: 'System Engineer',
     type: 'Full-time · 40 hours per week',
     employmentType: 'FULL_TIME',
-    salaryDisplay: 'Contact for details',
+    salaryDisplay: '$118,685 per year',
+    baseSalary: { currency: 'USD', value: 118685, unit: 'YEAR' },
     postingDate: '2025-03-14',
     openings: '3',
     location: OFFICE_ADDRESS,
@@ -171,7 +173,7 @@ export const careersPage = {
     eyebrow: 'Employee Referrals',
     title: 'The Tech Alpha Referral Program',
     description:
-      'Techalpha LLC employees can refer qualified candidates for open positions. If the referred candidate is hired and stays with the company for at least 365 days, the referring employee receives a special bonus.',
+      'Techalpha LLC employees can refer qualified candidates for open positions. If the referred candidate is hired and stays with the company for at least 365 days, the referring employee receives a $2,000 bonus. There is no limit to the number of referrals an employee can make.',
     eligibility:
       'Current employees of Techalpha LLC are eligible to make referrals. In case of multiple referrals, the first employee to submit the referral will be recognized. The referred candidate must not be a current employee.',
     procedure:

@@ -67,14 +67,6 @@ export function localBusinessJsonLd() {
       addressCountry: contact.address.country,
     },
     geo: { '@type': 'GeoCoordinates', latitude: 33.2079, longitude: -96.6389 },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '09:00',
-        closes: '18:00',
-      },
-    ],
     areaServed: siteConfig.organization.areaServed,
   } as const
 }

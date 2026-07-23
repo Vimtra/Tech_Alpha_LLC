@@ -88,8 +88,8 @@ export const servicesFullDetail: readonly ServiceDetail[] = [
     summary:
       'DevOps culture and continuous delivery pipelines for cloud success — release, test, operate, and innovate faster.',
     paragraphs: [
-      'Adopting a DevOps culture is essential for enterprises seeking success in the cloud. Tech Alpha DevOps expertise gives teams the tooling to build continuous integration and continuous delivery workflows across development, testing, and operations.',
-      'Our AWS-experienced DevOps engineers and solution architects construct CI/CD pipelines that accelerate development, integration, testing, and validation across every environment.',
+      'Adopting a DevOps culture is essential for enterprises seeking success in the cloud. DevOps is one of Tech Alpha’s core services, extending cloud consulting into continuous integration and continuous delivery workflows across development, testing, and operations.',
+      'Our engineers build CI/CD pipelines with GIT, Jenkins, Bitbucket, and SVN; deploy and manage applications on AWS and Azure using infrastructure as code; and work with configuration management tools including Ansible, Chef, and Puppet.',
     ],
     capabilities: [
       'Accelerated release cycles through automation',
@@ -110,12 +110,15 @@ export const servicesFullDetail: readonly ServiceDetail[] = [
     paragraphs: [
       'Scaling physical infrastructure requires planning and capital expenditure — long lead times for procurement, provisioning, and deployment. Cloud infrastructure can be provisioned quickly and helps organizations grow when they need it most.',
       'Tech Alpha architects solutions that work with on-premise infrastructure and provide the ability to scale into the cloud on demand. Pay-as-you-go pricing keeps total cost of ownership affordable.',
+      'Containers offer a more efficient approach than virtual machines for running modern applications. Our team is proficient in application containerization using Docker, Kubernetes, and CoreOS — and has helped customers design and automate application lifecycles using Docker, CoreOS, Kubernetes, and Apache Mesos.',
     ],
     capabilities: [
       'Hybrid on-premise + cloud environments',
       'Cloud migration strategy and deployment',
       'Infrastructure provisioning and scaling guidance',
       'Connectivity, integration, and configuration across the stack',
+      'Application containerization with Docker, Kubernetes, and CoreOS',
+      'Automated application lifecycles with Apache Mesos',
     ],
     iconName: 'server',
   },
@@ -154,9 +157,11 @@ export const servicesFullDetail: readonly ServiceDetail[] = [
     capabilities: [
       'Java application development, architecture, and design',
       'ESBs, ERP packages, portals, and enterprise systems',
+      'Mentoring and training',
       'Application installations, upgrades, and migrations',
       'Enterprise integration with .NET, Oracle, Progress',
       'Database administration and performance tuning',
+      'Web application development',
       'Project management and co-implementation',
     ],
     iconName: 'code',

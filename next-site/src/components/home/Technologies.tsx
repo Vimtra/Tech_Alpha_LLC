@@ -6,6 +6,7 @@ import {
   CircuitBoard,
   Cloud,
   GitBranch,
+  Layers,
   Settings2,
   type LucideIcon,
 } from 'lucide-react'
@@ -20,6 +21,7 @@ const ICONS: Record<string, LucideIcon> = {
   gitBranch: GitBranch,
   settings: Settings2,
   box: Box,
+  layers: Layers,
   circuitBoard: CircuitBoard,
 }
 
@@ -48,7 +50,7 @@ export function Technologies() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto mt-16 max-w-[1200px] overflow-hidden rounded-[28px] p-6 sm:mt-20 sm:p-10"
+          className="relative mx-auto mt-16 max-w-[1360px] overflow-hidden rounded-[28px] p-6 sm:mt-20 sm:p-10"
           style={{
             ...glassCardStyle({
               borderGradient:
@@ -67,7 +69,7 @@ export function Technologies() {
                 'radial-gradient(ellipse 60% 100% at 80% 50%, rgba(248,151,35,0.10) 0%, transparent 70%)',
             }}
           />
-          <div className="relative z-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
+          <div className="relative z-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-6">
             {groups.map((group) => {
               const Icon = ICONS[group.iconName] ?? Box
               return (

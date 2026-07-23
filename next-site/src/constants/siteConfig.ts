@@ -25,7 +25,7 @@ export const siteConfig = {
     email: 'hr@techalphallc.com',
     phone: '+1 510 946 7863',
     phoneLink: 'tel:+15109467863',
-    hours: 'Mon–Fri · 9:00 AM – 6:00 PM CT · 24/7 support for active engagements',
+    hours: '24/7 proactive support for active engagements',
     address: {
       street: '1402 S Custer Road, Suite 604',
       city: 'McKinney',
