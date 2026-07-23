@@ -4,12 +4,15 @@ import { AboutPreview } from '@/components/home/AboutPreview'
 import { ClientsMarquee } from '@/components/home/ClientsMarquee'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { ConsultingProcess } from '@/components/home/ConsultingProcess'
+import { FaqSection } from '@/components/home/FaqSection'
 import { ServicesPreview } from '@/components/home/ServicesPreview'
 import { Technologies } from '@/components/home/Technologies'
 import { WhyChooseUs } from '@/components/home/WhyChooseUs'
 import { JsonLd } from '@/components/common/JsonLd'
+import { siteConfig } from '@/constants/siteConfig'
+import { faqItems } from '@/content/faq'
 import { servicesPreview } from '@/content/services'
-import { serviceCatalogJsonLd } from '@/lib/jsonld'
+import { breadcrumbJsonLd, faqJsonLd, serviceCatalogJsonLd } from '@/lib/jsonld'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
@@ -50,6 +53,7 @@ export default function HomePage() {
       <WhyChooseUs />
       <Technologies />
       <ConsultingProcess />
+      <FaqSection />
       <ClosingCta />
       <JsonLd
         id="jsonld-service-catalog"
@@ -60,6 +64,11 @@ export default function HomePage() {
             slug: s.slug,
           })),
         )}
+      />
+      <JsonLd id="jsonld-home-faq" data={faqJsonLd([...faqItems])} />
+      <JsonLd
+        id="jsonld-home-breadcrumbs"
+        data={breadcrumbJsonLd([{ name: 'Home', url: siteConfig.url }])}
       />
     </>
   )

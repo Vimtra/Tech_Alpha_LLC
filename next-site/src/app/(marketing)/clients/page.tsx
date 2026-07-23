@@ -1,17 +1,67 @@
 import type { Metadata } from 'next'
 import { Container } from '@/components/ui/Container'
+import { ClientsGrid } from '@/components/clients/ClientsGrid'
+import { ClosingCta } from '@/components/home/ClosingCta'
+import { GradientHeading } from '@/components/home/GradientHeading'
+import { SectionEyebrow } from '@/components/home/SectionEyebrow'
+import { JsonLd } from '@/components/common/JsonLd'
+import { siteConfig } from '@/constants/siteConfig'
 import { clients } from '@/content/clients'
+import { breadcrumbJsonLd, itemListJsonLd } from '@/lib/jsonld'
 import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = buildMetadata({ title: 'Clients', description: 'Explore the industries and technology engagements supported by Tech Alpha LLC.', path: '/clients' })
+export const metadata: Metadata = buildMetadata({
+  title: 'Clients',
+  description:
+    'Enterprise engagements delivered by Tech Alpha LLC — ORIX, Genentech, Blue Cross Blue Shield, Airbnb, S&P Global, Toyota, Virgin Atlantic, and Walmart across financial services, biotechnology, healthcare, retail, aviation, and automotive.',
+  path: '/clients',
+})
 
 export default function ClientsPage() {
-  const industries = [...new Set(clients.map((client) => client.industry))]
-  return <Container className="py-20 sm:py-28">
-    <p className="text-brand-soft font-mono text-xs tracking-[0.24em] uppercase">Clients</p>
-    <h1 className="text-ink mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl">Technology consulting shaped around real operating needs</h1>
-    <p className="text-ink-muted mt-6 max-w-3xl text-lg leading-relaxed">Tech Alpha supports organizations across financial services, healthcare, biotechnology, hospitality, aviation, automotive, retail, and financial publishing. Engagements span cloud consulting, DevOps, application delivery, data center work, and quality assurance.</p>
-    <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{industries.map((industry) => <div key={industry} className="rounded-2xl border border-hairline bg-white/[0.03] p-5"><p className="text-ink text-lg font-semibold">{industry}</p><p className="text-ink-muted mt-2 text-sm">Enterprise technology support and delivery.</p></div>)}</div>
-    <div className="mt-20 grid gap-4 md:grid-cols-2">{clients.map((client) => <article key={client.name} className="rounded-2xl border border-hairline bg-surface/60 p-6"><p className="text-brand-soft font-mono text-[11px] tracking-[0.18em] uppercase">{client.industry}</p><h2 className="text-ink mt-3 text-xl font-semibold">{client.name}</h2><p className="text-ink-muted mt-2 text-sm leading-relaxed">{client.service}</p></article>)}</div>
-  </Container>
+  return (
+    <>
+      <section aria-label="Clients hero" className="relative pt-[160px] pb-16">
+        <Container size="wide" className="max-w-[1440px]">
+          <SectionEyebrow>Clients</SectionEyebrow>
+          <GradientHeading
+            as="h1"
+            lead="Enterprise engagements across"
+            accent="seven industries"
+            tail="."
+            className="mt-6 max-w-4xl"
+          />
+          <p className="text-ink-muted mt-8 max-w-2xl text-lg leading-relaxed">
+            A selection of enterprises Tech Alpha has supported with cloud, DevOps, data, and
+            application engagements — filter by industry to see which service line we delivered.
+          </p>
+        </Container>
+      </section>
+
+      <section aria-label="Client list" className="relative pb-24 sm:pb-32">
+        <Container size="wide" className="max-w-[1440px]">
+          <ClientsGrid />
+        </Container>
+      </section>
+
+      <ClosingCta />
+
+      <JsonLd
+        id="jsonld-clients-list"
+        data={itemListJsonLd(
+          clients.map((c) => ({
+            name: c.name,
+            url: `${siteConfig.url}/clients`,
+            description: `${c.industry} — ${c.service}. ${c.description}`,
+          })),
+        )}
+      />
+      <JsonLd
+        id="jsonld-clients-breadcrumbs"
+        data={breadcrumbJsonLd([
+          { name: 'Home', url: siteConfig.url },
+          { name: 'Clients', url: `${siteConfig.url}/clients` },
+        ])}
+      />
+    </>
+  )
 }

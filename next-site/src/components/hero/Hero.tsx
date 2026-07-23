@@ -22,14 +22,14 @@ export function Hero() {
       style={{
         marginTop: `-${NAV_OVERLAP}px`,
         paddingTop: `${NAV_OVERLAP}px`,
-        minHeight: `calc(clamp(500px, 72vh, 780px) + ${NAV_OVERLAP}px)`,
+        minHeight: `calc(clamp(520px, 78vh, 780px) + ${NAV_OVERLAP}px)`,
       }}
       aria-label="Hero — Tech Alpha LLC"
     >
       <HeroBackground sectionRef={sectionRef} />
       <HeroFloatingCards />
 
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1500px] items-center gap-8 px-6 py-12 lg:px-10 lg:py-6 xl:gap-6">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1500px] items-center gap-8 px-5 py-6 sm:px-6 sm:py-10 lg:px-10 lg:py-6 xl:gap-6">
         <HeroContent />
       </div>
     </section>

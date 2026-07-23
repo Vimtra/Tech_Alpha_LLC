@@ -40,6 +40,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={jakarta.variable} data-scroll-behavior="smooth">
+      <head>
+        <link rel="preload" href="/logo-3.png" as="image" type="image/png" fetchPriority="high" />
+      </head>
       <body className="bg-canvas text-ink antialiased">
         <a href="#main" className="skip-link">
           Skip to content

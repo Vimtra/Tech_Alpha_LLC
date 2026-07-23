@@ -174,7 +174,10 @@ export function HeroBackground({ sectionRef }: Props) {
         {PARTICLES.map((p, i) => (
           <span
             key={i}
-            className="animate-float absolute rounded-full"
+            // Show first 12 on mobile; the rest kick in at sm+ to reduce paint work on small devices.
+            className={`animate-float motion-reduce:animate-none absolute rounded-full ${
+              i >= 12 ? 'hidden sm:block' : ''
+            }`}
             style={{
               left: `${p.x}%`,
               top: `${p.y}%`,
