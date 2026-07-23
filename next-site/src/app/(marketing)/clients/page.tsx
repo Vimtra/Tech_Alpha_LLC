@@ -13,7 +13,7 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'Clients',
   description:
-    'Enterprise engagements delivered by Tech Alpha LLC — ORIX, Genentech, Blue Cross Blue Shield, Airbnb, S&P Global, Toyota, Virgin Atlantic, and Walmart across financial services, biotechnology, healthcare, retail, aviation, and automotive.',
+    'Enterprise engagements delivered by Tech Alpha LLC - ORIX, Genentech, Blue Cross Blue Shield, Airbnb, S&P Global, Toyota, Virgin Atlantic, and Walmart across financial services, biotechnology, healthcare, retail, aviation, and automotive.',
   path: '/clients',
 })
 
@@ -32,7 +32,7 @@ export default function ClientsPage() {
           />
           <p className="text-ink-muted mt-8 max-w-2xl text-lg leading-relaxed">
             A selection of enterprises Tech Alpha has supported with cloud, DevOps, data, and
-            application engagements — filter by industry to see which service line we delivered.
+            application engagements - filter by industry to see which service line we delivered.
           </p>
         </Container>
       </section>
@@ -51,7 +51,7 @@ export default function ClientsPage() {
           clients.map((c) => ({
             name: c.name,
             url: `${siteConfig.url}/clients`,
-            description: `${c.industry} — ${c.service}. ${c.description}`,
+            description: `${c.industry} - ${c.service}. ${c.description}`,
           })),
         )}
       />
